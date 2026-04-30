@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ott — das hier ist neuland</title>
+  <meta name="description" content="ott — das hier ist neuland" />
+
+  <!--
+    OTT — Coming Soon Site
+    Dateien im gleichen Ordner:
+    - index.html
+    - ott-background.jpg
+
+    Schnell editieren:
+    1. Hintergrundbild ersetzen: Datei weiter ott-background.jpg nennen.
+    2. Gig ändern: Im <section id="live"> Text anpassen.
+    3. Mail ändern: Im <section id="contact"> Mailadresse anpassen.
+    4. Instagram-Link unten bei <a class="small-link"> ersetzen.
+  -->
+
+  <style>
+    :root {
+      --paper: rgba(232, 226, 211, 0.92);
+      --paper-soft: rgba(232, 226, 211, 0.62);
+      --paper-faint: rgba(232, 226, 211, 0.38);
+      --black: #070706;
+      --line: rgba(232, 226, 211, 0.22);
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--black);
+    }
+
+    body {
+      margin: 0;
+      color: var(--paper);
+      background: var(--black);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      text-transform: lowercase;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .site-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -10;
+      overflow: hidden;
+      background: var(--black);
+    }
+
+    .site-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: saturate(0.72) contrast(1.12) brightness(0.62);
+      transform: scale(1.03);
+    }
+
+    .site-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 45%, rgba(0,0,0,0.12), rgba(0,0,0,0.68) 72%),
+        linear-gradient(to bottom, rgba(0,0,0,0.18), rgba(0,0,0,0.76));
+      pointer-events: none;
+    }
+
+    .grain {
+      position: fixed;
+      inset: -50%;
+      z-index: -9;
+      opacity: 0.13;
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,0.45) 0 0.7px, transparent 0.9px),
+        radial-gradient(circle, rgba(0,0,0,0.5) 0 0.8px, transparent 1px);
+      background-size: 3px 3px, 5px 5px;
+      animation: grain-drift 8s steps(8) infinite;
+      mix-blend-mode: overlay;
+    }
+
+    @keyframes grain-drift {
+      0% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-7%, 5%, 0); }
+    }
+
+    .page {
+      min-height: 230vh;
+      position: relative;
+    }
+
+    .hero {
+      min-height: 100vh;
+      width: min(100%, var(--max));
+      margin: 0 auto;
+      padding: clamp(22px, 4vw, 58px);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    .topbar,
+    .bottombar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 24px;
+      font-size: clamp(10px, 1vw, 13px);
+      letter-spacing: 0.18em;
+      color: var(--paper-soft);
+    }
+
+    .small-link {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 4px;
+      transition: opacity 260ms ease, border-color 260ms ease;
+    }
+
+    .small-link:hover {
+      opacity: 1;
+      border-color: var(--paper);
+    }
+
+    .statement {
+      align-self: center;
+      justify-self: center;
+      text-align: center;
+      transform: translateY(4vh);
+    }
+
+    h1 {
+      margin: 0;
+      font-weight: 400;
+      font-size: clamp(20px, 3vw, 45px);
+      line-height: 1.18;
+      letter-spacing: clamp(0.16em, 1vw, 0.42em);
+      text-shadow: 0 4px 32px rgba(0,0,0,0.82);
+      animation: soft-pulse 7s ease-in-out infinite alternate;
+    }
+
+    @keyframes soft-pulse {
+      from { opacity: 0.82; filter: blur(0.2px); }
+      to { opacity: 1; filter: blur(0); }
+    }
+
+    .scroll-note {
+      margin-top: 26px;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      color: var(--paper-faint);
+    }
+
+    .content {
+      width: min(100%, var(--max));
+      margin: 0 auto;
+      padding: 8vh clamp(22px, 4vw, 58px) 18vh;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: clamp(18px, 2vw, 28px);
+    }
+
+    .info-block {
+      border-top: 1px solid var(--line);
+      padding-top: 16px;
+      min-height: 160px;
+      color: var(--paper-soft);
+      font-size: clamp(12px, 1.2vw, 16px);
+      line-height: 1.75;
+      letter-spacing: 0.11em;
+      backdrop-filter: blur(2px);
+      opacity: 0;
+      transform: translateY(34px);
+      transition:
+        opacity 900ms ease,
+        transform 900ms ease,
+        filter 420ms ease,
+        color 420ms ease,
+        backdrop-filter 420ms ease;
+    }
+
+    .info-block.is-visible {
+      opacity: 0.58;
+      transform: translateY(0);
+    }
+
+    .info-block:hover {
+      opacity: 1;
+      color: var(--paper);
+      filter: blur(0);
+      backdrop-filter: blur(0);
+    }
+
+    .label {
+      display: block;
+      margin-bottom: 24px;
+      color: var(--paper-faint);
+      font-size: 11px;
+      letter-spacing: 0.22em;
+    }
+
+    .live {
+      grid-column: 2 / span 4;
+      filter: blur(2.4px);
+    }
+
+    .live:hover {
+      filter: blur(0);
+    }
+
+    .contact {
+      grid-column: 8 / span 4;
+      align-self: end;
+    }
+
+    .contact a,
+    .live a {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 4px;
+    }
+
+    .contact a:hover,
+    .live a:hover {
+      border-color: var(--paper);
+    }
+
+    .spacer {
+      min-height: 46vh;
+    }
+
+    .final-line {
+      width: min(100%, var(--max));
+      margin: 0 auto;
+      padding: 0 clamp(22px, 4vw, 58px) 48px;
+      color: var(--paper-faint);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+    }
+
+    /* Mobile: keine Hover-Abhängigkeit, kein starker Blur, alles direkt lesbar */
+    @media (max-width: 760px) {
+      .page { min-height: auto; }
+
+      .hero {
+        min-height: 100svh;
+        padding: 20px;
+      }
+
+      .topbar,
+      .bottombar {
+        font-size: 10px;
+        letter-spacing: 0.14em;
+      }
+
+      .statement {
+        justify-self: start;
+        text-align: left;
+        transform: translateY(2vh);
+      }
+
+      h1 {
+        font-size: 22px;
+        letter-spacing: 0.16em;
+        max-width: 12ch;
+      }
+
+      .scroll-note { display: none; }
+
+      .content {
+        padding: 4vh 20px 16vh;
+        display: block;
+      }
+
+      .info-block,
+      .info-block.is-visible,
+      .info-block:hover {
+        opacity: 0.82;
+        transform: none;
+        filter: none;
+        backdrop-filter: none;
+        min-height: auto;
+        margin-top: 54px;
+        font-size: 12px;
+        line-height: 1.75;
+        letter-spacing: 0.09em;
+      }
+
+      .live,
+      .live:hover {
+        filter: none;
+      }
+
+      .label {
+        margin-bottom: 16px;
+      }
+
+      .spacer { min-height: 10vh; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+      .info-block {
+        opacity: 0.74;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="site-bg" aria-hidden="true">
+    <img src="ott-background.jpg" alt="" />
+  </div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <div class="page">
+    <header class="hero">
+      <nav class="topbar" aria-label="primary">
+        <span>ott</span>
+        <a class="small-link" href="#live">live</a>
+      </nav>
+
+      <div class="statement">
+        <h1>das hier ist neuland</h1>
+        <div class="scroll-note">scroll</div>
+      </div>
+
+      <div class="bottombar">
+        <a class="small-link" href="mailto:hello@ott.band">hello@ott.band</a>
+        <a class="small-link" href="https://instagram.com/" target="_blank" rel="noreferrer">instagram</a>
+      </div>
+    </header>
+
+    <main class="content">
+      <section id="live" class="info-block live reveal" aria-labelledby="live-title">
+        <span id="live-title" class="label">temporary public gatherings</span>
+        <a href="https://terrain-gurzelen.org/summerfest-2026/" target="_blank" rel="noreferrer">
+          03.07.26<br />
+          terrain gurzelen<br />
+          19:30
+        </a>
+      </section>
+
+      <section id="contact" class="info-block contact reveal" aria-labelledby="contact-title">
+        <span id="contact-title" class="label">contact</span>
+        <a href="mailto:hello@ott.band">hello@ott.band</a><br />
+        <span>booking / fragments / signals</span>
+      </section>
+    </main>
+
+    <div class="spacer" aria-hidden="true"></div>
+
+    <footer class="final-line">
+      new music soon
+    </footer>
+  </div>
+
+  <script>
+    // Scroll-Reveal für die unteren Blöcke. Einfach editierbar, kein Backend.
+    const revealItems = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, {
+      threshold: 0.25,
+      rootMargin: '0px 0px -10% 0px'
+    });
+
+    revealItems.forEach((item) => observer.observe(item));
+  </script>
+</body>
+</html>
