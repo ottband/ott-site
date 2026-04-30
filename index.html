@@ -10,28 +10,28 @@
     Im gleichen GitHub-Ordner ablegen:
     - index.html
     - ott-background.jpg
-    - ott-logo.png
 
-    Tipp: Das Logo darf schwarz oder weiss sein, solange der Hintergrund transparent ist.
-    Es wird hier per CSS-Mask automatisch weiss eingefärbt.
+    Kein Logo-File nötig: Das Logo ist unten direkt als SVG im HTML eingebaut.
   -->
 
   <style>
     :root {
-      --text: rgba(235, 232, 220, 0.94);
-      --soft: rgba(235, 232, 220, 0.62);
-      --faint: rgba(235, 232, 220, 0.34);
+      --text: rgba(236, 232, 219, 0.94);
+      --soft: rgba(236, 232, 219, 0.61);
+      --faint: rgba(236, 232, 219, 0.34);
 
-      --yellow: #c9a84e;
-      --yellow-soft: rgba(201, 168, 78, 0.48);
-      --yellow-haze: rgba(201, 168, 78, 0.13);
-      --bluegrey: #26323b;
-      --bluegrey-light: #394751;
-      --bluegrey-deep: #11171d;
-      --ink: #080a0c;
+      --yellow: #c6a14a;
+      --yellow-soft: rgba(198, 161, 74, 0.46);
+      --yellow-haze: rgba(198, 161, 74, 0.11);
+
+      --grey-a: #373732;
+      --grey-b: #272823;
+      --grey-c: #141511;
+      --black: #070806;
 
       --max: 1180px;
       --edge: clamp(8px, 1.8vw, 22px);
+      --image-inset: clamp(12px, 2.1vw, 34px);
     }
 
     * { box-sizing: border-box; }
@@ -39,9 +39,9 @@
     html {
       scroll-behavior: smooth;
       background:
-        radial-gradient(circle at 18% 12%, rgba(201,168,78,0.16), transparent 29%),
-        radial-gradient(circle at 76% 28%, rgba(154,177,190,0.14), transparent 31%),
-        linear-gradient(145deg, #303d47 0%, #1b242b 42%, #0a0d10 100%);
+        radial-gradient(circle at 18% 15%, rgba(198,161,74,0.15), transparent 32%),
+        radial-gradient(circle at 82% 24%, rgba(222,216,196,0.06), transparent 34%),
+        linear-gradient(145deg, #3b3a34 0%, #242520 48%, #10110e 100%);
     }
 
     body {
@@ -52,10 +52,10 @@
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
       text-transform: lowercase;
       background:
-        linear-gradient(116deg, transparent 0 42%, rgba(201,168,78,0.07) 42.2% 43.1%, transparent 43.3% 100%),
-        linear-gradient(246deg, transparent 0 67%, rgba(143,163,174,0.075) 67.2% 68.2%, transparent 68.4% 100%),
-        radial-gradient(circle at 51% 35%, rgba(255,255,255,0.040), transparent 43%),
-        linear-gradient(to bottom, var(--bluegrey), var(--bluegrey-deep) 48%, var(--ink));
+        linear-gradient(116deg, transparent 0 39%, rgba(198,161,74,0.060) 39.2% 40.1%, transparent 40.3% 100%),
+        linear-gradient(246deg, transparent 0 68%, rgba(225,218,194,0.040) 68.2% 69.0%, transparent 69.2% 100%),
+        radial-gradient(circle at 49% 37%, rgba(255,245,211,0.035), transparent 45%),
+        linear-gradient(to bottom, var(--grey-a), var(--grey-b) 48%, var(--black));
     }
 
     body::before {
@@ -64,11 +64,11 @@
       inset: 0;
       z-index: 105;
       pointer-events: none;
-      opacity: 0.28;
+      opacity: 0.18;
       mix-blend-mode: soft-light;
       background:
-        repeating-linear-gradient(90deg, rgba(255,255,255,0.07) 0 1px, transparent 1px 33px),
-        repeating-linear-gradient(0deg, rgba(201,168,78,0.035) 0 1px, transparent 1px 41px);
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.055) 0 1px, transparent 1px 36px),
+        repeating-linear-gradient(0deg, rgba(198,161,74,0.030) 0 1px, transparent 1px 47px);
     }
 
     body::after {
@@ -79,22 +79,22 @@
       pointer-events: none;
       opacity: 0;
       background:
-        radial-gradient(circle at 50% 38%, rgba(255, 247, 214, 0.18), transparent 44%),
-        linear-gradient(to bottom, rgba(255,246,210,0.055), rgba(144,167,182,0.038));
+        radial-gradient(circle at 50% 38%, rgba(255, 244, 205, 0.16), transparent 45%),
+        linear-gradient(to bottom, rgba(255,241,198,0.047), rgba(255,232,153,0.026));
       mix-blend-mode: screen;
-      animation: page-flicker 8.6s infinite;
+      animation: page-flicker 8.4s infinite;
     }
 
     @keyframes page-flicker {
       0%, 4.8%, 5.75%, 22%, 23.3%, 56%, 57.4%, 81%, 82.2%, 100% { opacity: 0; }
-      5.05% { opacity: 0.23; }
-      5.22% { opacity: 0.035; }
-      5.45% { opacity: 0.18; }
-      22.35% { opacity: 0.095; }
-      22.74% { opacity: 0.02; }
-      56.28% { opacity: 0.20; }
-      56.53% { opacity: 0.045; }
-      81.24% { opacity: 0.13; }
+      5.05% { opacity: 0.22; }
+      5.22% { opacity: 0.030; }
+      5.45% { opacity: 0.17; }
+      22.35% { opacity: 0.090; }
+      22.74% { opacity: 0.018; }
+      56.28% { opacity: 0.18; }
+      56.53% { opacity: 0.040; }
+      81.24% { opacity: 0.12; }
     }
 
     a { color: inherit; text-decoration: none; }
@@ -104,12 +104,12 @@
       inset: -42%;
       z-index: 112;
       pointer-events: none;
-      opacity: 0.105;
+      opacity: 0.10;
       mix-blend-mode: overlay;
       background-image:
-        radial-gradient(circle, rgba(255,255,255,0.45) 0 0.55px, transparent 0.95px),
+        radial-gradient(circle, rgba(255,255,255,0.40) 0 0.55px, transparent 0.95px),
         radial-gradient(circle, rgba(0,0,0,0.65) 0 0.75px, transparent 1.08px),
-        linear-gradient(115deg, transparent 0 49.7%, rgba(201,168,78,0.16) 50%, transparent 50.3% 100%);
+        linear-gradient(115deg, transparent 0 49.7%, rgba(198,161,74,0.14) 50%, transparent 50.3% 100%);
       background-size: 3px 3px, 8px 8px, 360px 360px;
       animation: grain 6.2s steps(8) infinite;
     }
@@ -123,38 +123,44 @@
       100% { transform: translate3d(-5%,3%,0); }
     }
 
-    #logo-trail {
-      position: fixed;
-      inset: 0;
-      z-index: 84;
-      pointer-events: none;
-      opacity: 0.78;
-      mix-blend-mode: screen;
-    }
-
     .logo-float {
       position: fixed;
       left: 0;
       top: 0;
-      width: clamp(66px, 6.6vw, 112px);
-      height: clamp(66px, 6.6vw, 112px);
-      z-index: 92;
+      width: clamp(64px, 6.4vw, 106px);
+      height: clamp(64px, 6.4vw, 106px);
+      z-index: 96;
       pointer-events: none;
       opacity: 0.96;
       transform: translate3d(24px, 24px, 0) scale(1);
       will-change: transform;
       filter:
-        drop-shadow(0 0 10px rgba(255,255,255,0.22))
-        drop-shadow(0 0 26px rgba(201,168,78,0.18));
+        drop-shadow(0 0 9px rgba(255,255,255,0.23))
+        drop-shadow(0 0 26px rgba(198,161,74,0.19));
     }
 
-    .logo-mark {
+    .logo-svg {
       width: 100%;
       height: 100%;
-      background: rgba(255,255,255,0.98);
-      -webkit-mask: url("ott-logo.png") center / contain no-repeat;
-      mask: url("ott-logo.png") center / contain no-repeat;
+      overflow: visible;
+      background: transparent;
       animation: logo-spin 15s linear infinite, logo-flicker 4.35s steps(1) infinite;
+    }
+
+    .logo-svg circle,
+    .logo-svg path {
+      fill: none;
+      stroke: rgba(255,255,255,0.985);
+      stroke-width: 7.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .logo-svg .ghost-line {
+      stroke: rgba(255,255,255,0.16);
+      stroke-width: 9.4;
+      filter: blur(1.8px);
     }
 
     @keyframes logo-spin {
@@ -166,28 +172,28 @@
 
     @keyframes logo-flicker {
       0%, 100% { opacity: 0.90; filter: brightness(1); }
-      7% { opacity: 1; filter: brightness(2.2) sepia(0.32) saturate(1.8); }
-      8% { opacity: 0.34; filter: brightness(0.46); }
-      9% { opacity: 1; filter: brightness(1.75); }
+      7% { opacity: 1; filter: brightness(2.15); }
+      8% { opacity: 0.38; filter: brightness(0.50); }
+      9% { opacity: 1; filter: brightness(1.72); }
       31% { opacity: 0.86; filter: brightness(0.95); }
-      32% { opacity: 1; filter: brightness(2.55) sepia(0.45) saturate(2.1); }
-      33% { opacity: 0.48; filter: brightness(0.62); }
-      34% { opacity: 0.98; filter: brightness(1.2); }
-      68% { opacity: 1; filter: brightness(2.05) sepia(0.22); }
-      69% { opacity: 0.58; filter: brightness(0.72); }
+      32% { opacity: 1; filter: brightness(2.45); }
+      33% { opacity: 0.50; filter: brightness(0.64); }
+      34% { opacity: 0.98; filter: brightness(1.18); }
+      68% { opacity: 1; filter: brightness(2.0); }
+      69% { opacity: 0.60; filter: brightness(0.74); }
       70% { opacity: 0.94; filter: brightness(1.05); }
-      86% { opacity: 1; filter: brightness(1.85); }
-      87% { opacity: 0.72; filter: brightness(0.82); }
+      86% { opacity: 1; filter: brightness(1.78); }
+      87% { opacity: 0.72; filter: brightness(0.84); }
     }
 
     .frame {
       min-height: 100vh;
       padding: var(--edge);
       background:
-        radial-gradient(circle at 24% 18%, rgba(201,168,78,0.11), transparent 24%),
-        radial-gradient(circle at 71% 31%, rgba(150,171,184,0.10), transparent 32%),
-        linear-gradient(136deg, rgba(255,255,255,0.025), transparent 22% 76%, rgba(201,168,78,0.05)),
-        linear-gradient(to bottom, rgba(52,66,76,0.64), rgba(12,15,18,0.86));
+        radial-gradient(circle at 22% 19%, rgba(198,161,74,0.10), transparent 25%),
+        radial-gradient(circle at 72% 30%, rgba(229,222,204,0.055), transparent 34%),
+        linear-gradient(136deg, rgba(255,255,255,0.020), transparent 22% 76%, rgba(198,161,74,0.045)),
+        linear-gradient(to bottom, rgba(63,62,55,0.72), rgba(13,14,11,0.88));
     }
 
     .poster {
@@ -195,12 +201,12 @@
       min-height: calc(100vh - (var(--edge) * 2));
       overflow: clip;
       isolation: isolate;
-      border: 1px solid rgba(131, 119, 87, 0.48);
-      background: rgba(7, 9, 11, 0.62);
+      border: 1px solid rgba(139, 125, 86, 0.44);
+      background: rgba(8, 9, 7, 0.58);
       box-shadow:
-        0 0 0 1px rgba(0,0,0,0.78),
-        inset 0 0 0 1px rgba(255,255,255,0.025),
-        0 32px 96px rgba(0,0,0,0.56);
+        0 0 0 1px rgba(0,0,0,0.72),
+        inset 0 0 0 1px rgba(255,255,255,0.022),
+        0 30px 92px rgba(0,0,0,0.52);
     }
 
     .poster::before,
@@ -208,23 +214,24 @@
       content: "";
       position: fixed;
       inset: var(--edge);
-      z-index: 2;
       pointer-events: none;
     }
 
     .poster::before {
-      opacity: 0.22;
+      z-index: 2;
+      opacity: 0.17;
       mix-blend-mode: screen;
       background:
-        linear-gradient(108deg, transparent 0 24%, rgba(201,168,78,0.18) 24.2% 24.8%, transparent 25% 100%),
-        linear-gradient(252deg, transparent 0 72%, rgba(170,192,202,0.12) 72.2% 73.4%, transparent 73.6% 100%);
+        linear-gradient(108deg, transparent 0 24%, rgba(198,161,74,0.16) 24.2% 24.8%, transparent 25% 100%),
+        linear-gradient(252deg, transparent 0 72%, rgba(235,228,204,0.065) 72.2% 73.2%, transparent 73.4% 100%);
     }
 
     .poster::after {
-      opacity: 0.42;
+      z-index: 3;
+      opacity: 0.36;
       mix-blend-mode: multiply;
       background:
-        radial-gradient(circle at 50% 50%, transparent 0 44%, rgba(0,0,0,0.36) 84%, rgba(0,0,0,0.58) 100%);
+        radial-gradient(circle at 50% 50%, transparent 0 43%, rgba(0,0,0,0.28) 84%, rgba(0,0,0,0.47) 100%);
     }
 
     .background,
@@ -237,19 +244,24 @@
     .background {
       z-index: 0;
       overflow: hidden;
-      border: 1px solid rgba(117, 108, 80, 0.34);
+      border: 1px solid rgba(131, 119, 80, 0.32);
       background:
-        radial-gradient(circle at 49% 38%, rgba(201,168,78,0.13), transparent 42%),
-        linear-gradient(145deg, #33404a, #121920 47%, #090b0e);
+        radial-gradient(circle at 50% 38%, rgba(198,161,74,0.115), transparent 45%),
+        radial-gradient(circle at 13% 74%, rgba(255,226,141,0.055), transparent 28%),
+        linear-gradient(145deg, #3a3932, #22231f 49%, #0b0c09);
     }
 
     .background img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      position: absolute;
+      inset: var(--image-inset);
+      width: calc(100% - (var(--image-inset) * 2));
+      height: calc(100% - (var(--image-inset) * 2));
+      object-fit: contain;
       object-position: center;
-      transform: translateY(calc(var(--scroll, 0) * -0.034px)) scale(1.022);
-      filter: brightness(0.72) contrast(1.15) saturate(0.72) sepia(0.06);
+      transform: translateY(calc(var(--scroll, 0) * -0.030px)) scale(0.988);
+      transform-origin: center;
+      opacity: 0.92;
+      filter: brightness(0.78) contrast(1.10) saturate(0.82) sepia(0.075);
     }
 
     .background::after {
@@ -257,19 +269,28 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(circle at 50% 36%, rgba(255,255,255,0.050), transparent 28%),
-        radial-gradient(circle at 18% 17%, rgba(201,168,78,0.16), transparent 31%),
-        linear-gradient(110deg, rgba(56,72,83,0.32), transparent 38% 61%, rgba(201,168,78,0.12)),
-        linear-gradient(to bottom, rgba(39,49,57,0.20), rgba(4,6,8,0.46));
+        radial-gradient(circle at 50% 36%, rgba(255,248,225,0.040), transparent 29%),
+        radial-gradient(circle at 18% 18%, rgba(198,161,74,0.13), transparent 31%),
+        linear-gradient(110deg, rgba(80,78,67,0.24), transparent 38% 61%, rgba(198,161,74,0.10)),
+        linear-gradient(to bottom, rgba(50,49,42,0.18), rgba(4,5,4,0.38));
       mix-blend-mode: overlay;
     }
 
     .veil {
       z-index: 1;
       background:
-        linear-gradient(90deg, rgba(0,0,0,0.22), transparent 18% 82%, rgba(0,0,0,0.22)),
-        radial-gradient(circle at 50% 37%, rgba(255,255,255,0.032), rgba(255,255,255,0.006) 23%, rgba(0,0,0,0.18) 68%, rgba(0,0,0,0.48) 100%),
-        linear-gradient(to bottom, rgba(43,54,62,0.07), rgba(0,0,0,0.40));
+        linear-gradient(90deg, rgba(0,0,0,0.18), transparent 19% 81%, rgba(0,0,0,0.18)),
+        radial-gradient(circle at 50% 37%, rgba(255,248,225,0.024), rgba(255,255,255,0.004) 24%, rgba(0,0,0,0.13) 69%, rgba(0,0,0,0.38) 100%),
+        linear-gradient(to bottom, rgba(64,62,53,0.055), rgba(0,0,0,0.34));
+    }
+
+    #logo-trail {
+      position: fixed;
+      inset: 0;
+      z-index: 4;
+      pointer-events: none;
+      opacity: 0.86;
+      mix-blend-mode: screen;
     }
 
     .page {
@@ -300,7 +321,7 @@
     .top a {
       display: inline-block;
       padding-bottom: 4px;
-      border-bottom: 1px solid rgba(201,168,78,0.16);
+      border-bottom: 1px solid rgba(198,161,74,0.16);
       filter: blur(0.7px);
       opacity: 0.68;
       transform-origin: right center;
@@ -313,32 +334,32 @@
       filter: blur(0);
       border-color: var(--yellow-soft);
       color: var(--yellow);
-      text-shadow: 0 0 24px rgba(201,168,78,0.32);
+      text-shadow: 0 0 24px rgba(198,161,74,0.32);
     }
 
     .hero-center {
       align-self: center;
       justify-self: center;
-      width: min(94vw, 1120px);
+      width: min(94vw, 1080px);
       text-align: center;
-      transform: translateY(3.5vh);
+      transform: translateY(3.2vh);
       pointer-events: none;
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(20px, 3.3vw, 50px);
+      font-size: clamp(19px, 3.05vw, 46px);
       font-weight: 400;
       line-height: 1.06;
-      letter-spacing: clamp(0.18em, 1.25vw, 0.66em);
+      letter-spacing: clamp(0.16em, 1.05vw, 0.54em);
       white-space: nowrap;
       color: rgba(238, 234, 219, 0.86);
       text-shadow:
-        0 8px 48px rgba(0,0,0,0.96),
-        0 0 36px rgba(201,168,78,0.08);
+        0 8px 48px rgba(0,0,0,0.92),
+        0 0 34px rgba(198,161,74,0.08);
       opacity: clamp(0, calc(0.92 - (var(--scroll, 0) / 135)), 0.92);
-      filter: blur(calc(0.22px + (var(--scroll, 0) * 0.018px)));
-      transform: translateY(calc(var(--scroll, 0) * -0.48px)) scaleX(1.08);
+      filter: blur(calc(0.20px + (var(--scroll, 0) * 0.018px)));
+      transform: translateY(calc(var(--scroll, 0) * -0.48px)) scaleX(1.035);
       transform-origin: center;
     }
 
@@ -354,22 +375,28 @@
 
     .panel {
       --panel-focus: 0;
-      border-top: 1px solid rgba(201,168,78,0.16);
+      border-top: 1px solid rgba(198,161,74,0.16);
       padding-top: 18px;
       min-height: 178px;
       color: var(--soft);
       font-size: clamp(16px, 1.75vw, 25px);
       line-height: 1.72;
       letter-spacing: 0.13em;
-      opacity: calc(0.08 + (var(--panel-focus) * 0.64));
-      filter: blur(calc(5.2px - (var(--panel-focus) * 5.2px)));
-      transform: translateY(calc(58px - (var(--panel-focus) * 58px))) scale(calc(0.968 + (var(--panel-focus) * 0.032)));
-      transition: color 420ms ease, border-color 420ms ease, text-shadow 420ms ease;
+      opacity: calc(0.08 + (var(--panel-focus) * 0.56));
+      filter: blur(calc(5.6px - (var(--panel-focus) * 4.4px)));
+      transform: translateY(calc(58px - (var(--panel-focus) * 48px))) scale(calc(0.968 + (var(--panel-focus) * 0.025)));
+      transition:
+        opacity 520ms ease,
+        filter 520ms ease,
+        transform 520ms ease,
+        color 420ms ease,
+        border-color 420ms ease,
+        text-shadow 420ms ease;
       will-change: opacity, filter, transform;
     }
 
     .panel.visible {
-      border-color: rgba(201,168,78,0.22);
+      border-color: rgba(198,161,74,0.22);
     }
 
     .panel:hover {
@@ -396,7 +423,7 @@
     }
 
     .mail-link {
-      border-bottom: 1px solid rgba(201,168,78,0.28);
+      border-bottom: 1px solid rgba(198,161,74,0.28);
       padding-bottom: 5px;
     }
 
@@ -404,7 +431,7 @@
       color: var(--yellow);
       border-bottom: 1px solid var(--yellow-soft);
       padding-bottom: 4px;
-      text-shadow: 0 0 24px rgba(201,168,78,0.12);
+      text-shadow: 0 0 24px rgba(198,161,74,0.12);
     }
 
     .panel:hover .panel-link,
@@ -412,7 +439,7 @@
       opacity: 1;
       color: var(--yellow);
       transform: translateY(-4px) scale(1.1);
-      text-shadow: 0 0 28px rgba(201,168,78,0.34);
+      text-shadow: 0 0 28px rgba(198,161,74,0.34);
       filter: blur(0);
     }
 
@@ -421,21 +448,24 @@
     .end-space { height: 18vh; }
 
     @media (max-width: 760px) {
-      :root { --edge: 8px; }
+      :root {
+        --edge: 8px;
+        --image-inset: 12px;
+      }
 
       .poster { min-height: calc(100vh - 16px); }
 
       .background img {
         object-fit: contain;
         object-position: center 28%;
-        transform: none;
-        filter: brightness(0.74) contrast(1.13) saturate(0.74) sepia(0.05);
+        transform: translateY(calc(var(--scroll, 0) * -0.012px)) scale(0.988);
+        filter: brightness(0.77) contrast(1.10) saturate(0.82) sepia(0.07);
       }
 
       .veil {
         background:
-          linear-gradient(90deg, rgba(0,0,0,0.28), transparent 25% 75%, rgba(0,0,0,0.28)),
-          linear-gradient(to bottom, rgba(36,47,55,0.04), rgba(0,0,0,0.46));
+          linear-gradient(90deg, rgba(0,0,0,0.22), transparent 25% 75%, rgba(0,0,0,0.22)),
+          linear-gradient(to bottom, rgba(58,56,48,0.04), rgba(0,0,0,0.38));
       }
 
       .page { min-height: 172vh; }
@@ -458,10 +488,10 @@
       }
 
       h1 {
-        font-size: clamp(14px, 4vw, 20px);
-        letter-spacing: clamp(0.105em, 1.45vw, 0.19em);
+        font-size: clamp(14px, 3.75vw, 19px);
+        letter-spacing: clamp(0.095em, 1.25vw, 0.17em);
         color: rgba(238, 234, 219, 0.84);
-        transform: translateY(calc(var(--scroll, 0) * -0.44px)) scaleX(1.035);
+        transform: translateY(calc(var(--scroll, 0) * -0.44px)) scaleX(1.015);
       }
 
       .scroll-layer {
@@ -480,7 +510,7 @@
         opacity: calc(0.12 + (var(--panel-focus) * 0.86));
         filter: blur(calc(7.5px - (var(--panel-focus) * 7.5px)));
         transform: translateY(calc(42px - (var(--panel-focus) * 42px))) scale(calc(0.975 + (var(--panel-focus) * 0.025)));
-        transition: color 300ms ease, border-color 300ms ease;
+        transition: opacity 460ms ease, filter 460ms ease, transform 460ms ease, color 300ms ease, border-color 300ms ease;
       }
 
       .panel:hover .panel-link,
@@ -493,7 +523,7 @@
         height: 68px;
       }
 
-      #logo-trail { opacity: 0.54; }
+      #logo-trail { opacity: 0.64; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -511,11 +541,22 @@
 </head>
 
 <body>
-  <canvas id="logo-trail" aria-hidden="true"></canvas>
   <div class="noise" aria-hidden="true"></div>
 
   <div class="logo-float" id="logo" aria-hidden="true">
-    <div class="logo-mark"></div>
+    <svg class="logo-svg" viewBox="0 0 120 120" role="img" aria-label="ott logo">
+      <circle class="ghost-line" cx="60" cy="72" r="39"></circle>
+      <path class="ghost-line" d="M49 26 C51 42 52 61 55 84"></path>
+      <path class="ghost-line" d="M76 20 C76 40 77 57 79 74"></path>
+      <path class="ghost-line" d="M43 51 C48 51 53 51 59 50"></path>
+      <path class="ghost-line" d="M70 54 C76 55 83 55 88 54"></path>
+
+      <circle cx="60" cy="72" r="39"></circle>
+      <path d="M49 26 C51 42 52 61 55 84"></path>
+      <path d="M76 20 C76 40 77 57 79 74"></path>
+      <path d="M43 51 C48 51 53 51 59 50"></path>
+      <path d="M70 54 C76 55 83 55 88 54"></path>
+    </svg>
   </div>
 
   <div class="frame">
@@ -524,6 +565,7 @@
         <img src="ott-background.jpg" alt="" />
       </div>
       <div class="veil" aria-hidden="true"></div>
+      <canvas id="logo-trail" aria-hidden="true"></canvas>
 
       <div class="page">
         <header class="hero">
@@ -577,7 +619,8 @@
         const idealPoint = viewportH * (mobileQuery.matches ? 0.58 : 0.60);
         const range = viewportH * (mobileQuery.matches ? 0.62 : 0.68);
         const raw = 1 - Math.abs(focusPoint - idealPoint) / range;
-        const focus = clamp(raw * 1.25, 0, 1);
+        const focusLimit = mobileQuery.matches ? 1 : 0.72;
+        const focus = clamp(raw * 1.25, 0, 1) * focusLimit;
         panel.style.setProperty('--panel-focus', focus.toFixed(3));
       });
     }
@@ -628,8 +671,8 @@
       }, { passive: true });
 
       function chooseWaypoint(now) {
-        nextWaypointAt = now + 2400 + Math.random() * 4200;
-        const margin = 70;
+        nextWaypointAt = now + 2200 + Math.random() * 4600;
+        const margin = 76;
         waypointX = margin + Math.random() * Math.max(1, window.innerWidth - margin * 2);
         waypointY = margin + Math.random() * Math.max(1, window.innerHeight - margin * 2);
       }
@@ -638,34 +681,40 @@
         if (!trailCtx || !trailCanvas) return;
 
         trailCtx.globalCompositeOperation = 'destination-out';
-        trailCtx.fillStyle = 'rgba(0,0,0,0.052)';
+        trailCtx.fillStyle = 'rgba(0,0,0,0.018)';
         trailCtx.fillRect(0, 0, window.innerWidth, window.innerHeight);
 
         trailCtx.globalCompositeOperation = 'lighter';
 
         if (previousTrailX !== null) {
-          trailCtx.beginPath();
-          trailCtx.moveTo(previousTrailX, previousTrailY);
-          trailCtx.lineTo(x, y);
-          trailCtx.strokeStyle = `rgba(255,255,255,${0.030 + intensity * 0.035})`;
-          trailCtx.lineWidth = Math.max(1, size * 0.055);
-          trailCtx.lineCap = 'round';
-          trailCtx.stroke();
+          for (let i = 0; i < 3; i += 1) {
+            trailCtx.beginPath();
+            trailCtx.moveTo(previousTrailX, previousTrailY);
+            const jitterX = (Math.random() - 0.5) * size * 0.18;
+            const jitterY = (Math.random() - 0.5) * size * 0.18;
+            trailCtx.lineTo(x + jitterX, y + jitterY);
+            trailCtx.strokeStyle = i === 0
+              ? `rgba(255,255,255,${0.034 + intensity * 0.040})`
+              : `rgba(198,161,74,${0.018 + intensity * 0.026})`;
+            trailCtx.lineWidth = Math.max(1, size * (i === 0 ? 0.045 : 0.025));
+            trailCtx.lineCap = 'round';
+            trailCtx.stroke();
+          }
         }
 
-        const particleCount = mobileQuery.matches ? 2 : 4;
+        const particleCount = mobileQuery.matches ? 4 : 8;
         for (let i = 0; i < particleCount; i += 1) {
           const angle = Math.random() * Math.PI * 2;
-          const distance = Math.random() * size * 0.34;
+          const distance = Math.random() * size * 0.42;
           const px = x + Math.cos(angle) * distance;
           const py = y + Math.sin(angle) * distance;
-          const radius = 0.8 + Math.random() * (mobileQuery.matches ? 2.1 : 3.2);
+          const radius = 0.7 + Math.random() * (mobileQuery.matches ? 2.2 : 3.6);
 
           trailCtx.beginPath();
           trailCtx.arc(px, py, radius, 0, Math.PI * 2);
-          trailCtx.fillStyle = Math.random() > 0.62
-            ? `rgba(201,168,78,${0.035 + Math.random() * 0.065})`
-            : `rgba(255,255,255,${0.030 + Math.random() * 0.075})`;
+          trailCtx.fillStyle = Math.random() > 0.58
+            ? `rgba(198,161,74,${0.030 + Math.random() * 0.075})`
+            : `rgba(255,255,255,${0.032 + Math.random() * 0.085})`;
           trailCtx.fill();
         }
 
@@ -706,9 +755,9 @@
         cy = lerp(cy, targetY, ease * dt);
 
         const scale = clamp(
-          1.08 + Math.sin(t * 0.53) * 0.13 + Math.sin(t * 1.31 + 1.5) * 0.075,
+          1.06 + Math.sin(t * 0.53) * 0.13 + Math.sin(t * 1.31 + 1.5) * 0.075,
           0.94,
-          1.28
+          1.25
         );
 
         logo.style.transform = `translate3d(${cx}px, ${cy}px, 0) scale(${scale})`;
