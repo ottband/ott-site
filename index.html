@@ -14,12 +14,12 @@
 
   <style>
     :root {
-      --paper: #141416;
+      --text: rgba(236, 231, 219, 0.92);
+      --soft: rgba(236, 231, 219, 0.66);
+      --faint: rgba(236, 231, 219, 0.40);
+      --line: rgba(92, 88, 78, 0.78);
+      --edge: #11110f;
       --black: #050505;
-      --text: rgba(231, 226, 211, 0.92);
-      --soft: rgba(231, 226, 211, 0.55);
-      --faint: rgba(231, 226, 211, 0.30);
-      --line: rgba(231, 226, 211, 0.14);
       --max: 1180px;
     }
 
@@ -27,206 +27,88 @@
 
     html {
       scroll-behavior: smooth;
-      background: #e7e7e7;
+      background: var(--edge);
     }
 
     body {
       margin: 0;
       min-height: 100%;
       color: var(--text);
-      background: #e7e7e7;
+      background: var(--edge);
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
       text-transform: lowercase;
+      overflow-x: hidden;
     }
 
-    a { color: inherit; text-decoration: none; }
-
-    .site {
-      width: min(calc(100% - 32px), var(--max));
-      margin: 8px auto 44px;
-      background: var(--paper);
-      box-shadow: 0 22px 80px rgba(0,0,0,0.22);
-      overflow: clip;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    .nav {
-      height: 36px;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      padding: 0 clamp(18px, 3vw, 42px);
-      color: var(--faint);
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      border-bottom: 1px solid rgba(255,255,255,0.035);
-    }
-
-    .nav a {
-      display: inline-block;
-      opacity: 0.72;
-      filter: blur(0.35px);
-      transition: transform 280ms ease, opacity 280ms ease, filter 280ms ease, color 280ms ease;
-    }
-
-    .nav a:hover {
-      transform: translateY(-3px) scale(1.055);
-      opacity: 1;
-      filter: blur(0);
-      color: var(--text);
+    .frame {
+      min-height: 100vh;
+      background: var(--edge);
+      padding: clamp(10px, 2.4vw, 28px);
     }
 
     .poster {
-      position: sticky;
-      top: 0;
-      min-height: min(74vh, 720px);
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-      isolation: isolate;
+      position: relative;
+      min-height: calc(100vh - clamp(20px, 4.8vw, 56px));
+      overflow: clip;
+      border: 1px solid rgba(75, 72, 64, 0.82);
       background: var(--black);
+      box-shadow:
+        0 0 0 1px rgba(0,0,0,0.85),
+        0 22px 70px rgba(0,0,0,0.52);
+      isolation: isolate;
     }
 
-    .poster::before {
-      content: "";
-      position: absolute;
-      inset: 0;
+    .background {
+      position: fixed;
+      inset: clamp(10px, 2.4vw, 28px);
+      z-index: -5;
+      overflow: hidden;
+      background: var(--black);
+      border: 1px solid rgba(75, 72, 64, 0.82);
+    }
+
+    .background img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transform: scale(1.025);
+      filter: brightness(0.72) contrast(1.12) saturate(0.78);
+      animation: slow-breath 20s ease-in-out infinite alternate;
+    }
+
+    @keyframes slow-breath {
+      from { transform: scale(1.02); filter: brightness(0.69) contrast(1.10) saturate(0.76); }
+      to   { transform: scale(1.055); filter: brightness(0.78) contrast(1.16) saturate(0.82); }
+    }
+
+    .veil {
+      position: fixed;
+      inset: clamp(10px, 2.4vw, 28px);
       z-index: -4;
-      background-image: url("ott-background.jpg"), url("./ott-background.jpg");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      transform: scale(1.015);
-      filter: brightness(0.60) contrast(1.18) saturate(0.72) blur(0.2px);
-      animation: breathe 22s ease-in-out infinite alternate;
-    }
-
-    .poster::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -3;
-      background:
-        radial-gradient(circle at 50% 44%, rgba(0,0,0,0.04), rgba(0,0,0,0.52) 75%),
-        linear-gradient(to bottom, rgba(0,0,0,0.08), rgba(0,0,0,0.36));
       pointer-events: none;
+      background:
+        radial-gradient(circle at 50% 38%, rgba(0,0,0,0.00), rgba(0,0,0,0.38) 78%),
+        linear-gradient(to bottom, rgba(0,0,0,0.05), rgba(0,0,0,0.30));
     }
 
     .grain {
-      position: absolute;
-      inset: -60%;
-      z-index: -2;
+      position: fixed;
+      inset: -35%;
+      z-index: -3;
       pointer-events: none;
-      opacity: 0.13;
-      mix-blend-mode: overlay;
+      opacity: 0.10;
       background-image:
-        radial-gradient(circle, rgba(255,255,255,0.5) 0 0.6px, transparent 0.9px),
-        radial-gradient(circle, rgba(0,0,0,0.65) 0 0.7px, transparent 1px);
+        radial-gradient(circle, rgba(255,255,255,0.44) 0 0.55px, transparent 0.85px),
+        radial-gradient(circle, rgba(0,0,0,0.48) 0 0.75px, transparent 1px);
       background-size: 3px 3px, 7px 7px;
-      animation: grain 8s steps(8) infinite;
-    }
-
-    .poster-line {
-      position: absolute;
-      inset: 8% 5%;
-      z-index: -1;
-      border: 1px solid rgba(231,226,211,0.07);
-      opacity: 0.7;
-      pointer-events: none;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(13px, 1.35vw, 22px);
-      font-weight: 400;
-      letter-spacing: clamp(0.34em, 1.05vw, 0.72em);
-      color: rgba(231,226,211,0.83);
-      text-shadow: 0 2px 26px rgba(0,0,0,0.9);
-      filter: blur(0.55px);
-      transition: transform 320ms ease, filter 320ms ease, opacity 320ms ease, letter-spacing 320ms ease;
-      animation: focus-pulse 8s ease-in-out infinite alternate;
-    }
-
-    h1:hover {
-      transform: translateY(-6px) scale(1.045);
-      filter: blur(0);
-      opacity: 1;
-      letter-spacing: clamp(0.38em, 1.16vw, 0.78em);
-    }
-
-    .info {
-      position: relative;
-      z-index: 2;
-      min-height: 58vh;
-      padding: clamp(58px, 8vw, 112px) clamp(22px, 8vw, 180px) clamp(42px, 7vw, 92px);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(36px, 9vw, 160px);
-      border-top: 1px solid rgba(255,255,255,0.025);
-      background:
-        linear-gradient(to bottom, rgba(20,20,22,0.86), var(--paper) 28%, #121214 100%);
-    }
-
-    .card {
-      align-self: start;
-      color: var(--soft);
-      font-size: clamp(11px, 1vw, 14px);
-      line-height: 1.58;
-      letter-spacing: 0.12em;
-      opacity: 0;
-      transform: translateY(42px) scale(0.985);
-      filter: blur(2.2px);
-      transition:
-        opacity 700ms ease,
-        transform 700ms ease,
-        filter 700ms ease,
-        color 320ms ease;
-      will-change: transform, filter, opacity;
-    }
-
-    .card.visible { opacity: 0.62; transform: translateY(0) scale(1); }
-
-    .card:hover,
-    .card:focus-within {
-      opacity: 1;
-      color: var(--text);
-      transform: translateY(-8px) scale(1.045);
-      filter: blur(0);
-    }
-
-    .label {
-      display: block;
-      margin-bottom: 16px;
-      color: var(--faint);
-      font-size: 10px;
-      letter-spacing: 0.22em;
-    }
-
-    .card a {
-      display: inline-block;
-      border-bottom: 1px solid transparent;
-      padding-bottom: 3px;
-      filter: blur(0.75px);
-      transition: transform 260ms ease, filter 260ms ease, border-color 260ms ease, color 260ms ease;
-    }
-
-    .card a:hover {
-      transform: translateY(-4px) scale(1.045);
-      filter: blur(0);
-      border-color: var(--text);
-      color: var(--text);
-    }
-
-    .mail { justify-self: start; }
-    .live { justify-self: end; }
-
-    .end {
-      height: 26vh;
-      border-top: 1px solid var(--line);
-    }
-
-    @keyframes breathe {
-      from { transform: scale(1.015); filter: brightness(0.56) contrast(1.15) saturate(0.68) blur(0.35px); }
-      to   { transform: scale(1.055); filter: brightness(0.66) contrast(1.22) saturate(0.78) blur(0); }
+      mix-blend-mode: overlay;
+      animation: grain 7s steps(7) infinite;
     }
 
     @keyframes grain {
@@ -234,88 +116,318 @@
       100% { transform: translate3d(-5%,4%,0); }
     }
 
-    @keyframes focus-pulse {
-      from { filter: blur(0.8px); opacity: 0.72; transform: translateY(0); }
-      to { filter: blur(0.15px); opacity: 0.94; transform: translateY(-2px); }
+    .page {
+      position: relative;
+      z-index: 1;
+      min-height: 178vh;
+      width: 100%;
+    }
+
+    .hero {
+      width: min(100%, var(--max));
+      min-height: calc(100vh - clamp(20px, 4.8vw, 56px));
+      margin: 0 auto;
+      padding: clamp(18px, 4vw, 52px);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 24px;
+      color: var(--soft);
+      font-size: clamp(10px, 0.95vw, 13px);
+      letter-spacing: 0.18em;
+    }
+
+    .mark {
+      color: var(--text);
+      letter-spacing: 0.42em;
+      text-shadow: 0 4px 24px rgba(0,0,0,0.75);
+    }
+
+    .hover-link,
+    .panel-link {
+      display: inline-block;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 4px;
+      filter: blur(0.8px);
+      opacity: 0.72;
+      transform: translateY(0) scale(1);
+      transform-origin: left center;
+      transition:
+        transform 260ms ease,
+        opacity 260ms ease,
+        border-color 260ms ease,
+        filter 260ms ease,
+        color 260ms ease;
+    }
+
+    .hover-link:hover,
+    .panel:hover .panel-link,
+    .panel-link:hover {
+      transform: translateY(-5px) scale(1.045);
+      opacity: 1;
+      filter: blur(0);
+      border-color: rgba(236,231,219,0.82);
+      color: var(--text);
+    }
+
+    .hero-center {
+      align-self: center;
+      justify-self: center;
+      text-align: center;
+      transform: translateY(4vh);
+      pointer-events: none;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(18px, 2.9vw, 42px);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: clamp(0.20em, 1vw, 0.42em);
+      text-shadow: 0 6px 42px rgba(0,0,0,0.92);
+      opacity: 0.88;
+      filter: blur(0.4px);
+      transition: none;
+    }
+
+    .scroll-layer {
+      width: min(100%, var(--max));
+      margin: 0 auto;
+      padding: 3vh clamp(18px, 4vw, 52px) 20vh;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: clamp(18px, 2.4vw, 34px);
+      background: transparent;
+    }
+
+    .panel {
+      border-top: 1px solid var(--line);
+      padding-top: 16px;
+      min-height: 130px;
+      color: var(--soft);
+      font-size: clamp(11px, 1vw, 14px);
+      line-height: 1.7;
+      letter-spacing: 0.12em;
+      opacity: 0;
+      filter: blur(1.8px);
+      transform: translateY(42px) scale(0.985);
+      transition:
+        opacity 700ms ease,
+        transform 700ms ease,
+        filter 380ms ease,
+        color 380ms ease;
+      background: transparent;
+    }
+
+    .panel.visible {
+      opacity: 0.72;
+      transform: translateY(0) scale(1);
+    }
+
+    .panel:hover {
+      opacity: 1;
+      color: var(--text);
+      filter: blur(0);
+      transform: translateY(-8px) scale(1.035);
+    }
+
+    .panel-label {
+      display: block;
+      margin-bottom: 22px;
+      color: var(--faint);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+    }
+
+    .mail { grid-column: 2 / span 4; }
+    .live { grid-column: 8 / span 4; align-self: end; }
+
+    .end-space { height: 18vh; }
+
+    @supports (animation-timeline: view()) {
+      .hero-center {
+        animation: title-scroll both linear;
+        animation-timeline: view();
+        animation-range: exit 0% exit 100%;
+      }
+
+      .scroll-layer {
+        animation: content-drift both linear;
+        animation-timeline: view();
+        animation-range: entry 0% entry 100%;
+      }
+
+      @keyframes title-scroll {
+        from { opacity: 1; transform: translateY(4vh); filter: blur(0); }
+        to   { opacity: 0; transform: translateY(-26vh); filter: blur(2.5px); }
+      }
+
+      @keyframes content-drift {
+        from { transform: translateY(7vh); }
+        to   { transform: translateY(-2vh); }
+      }
     }
 
     @media (max-width: 760px) {
-      .site { width: 100%; margin: 0; }
-      .nav { height: 34px; padding: 0 18px; }
-      .poster { min-height: 68vh; }
-      .poster::before { background-position: center; animation: none; transform: scale(1.02); }
-      .poster-line { inset: 7% 4%; }
-      h1 { max-width: 80%; font-size: 13px; letter-spacing: 0.28em; text-align: center; }
-      .info { min-height: 48vh; display: block; padding: 56px 22px 72px; }
-      .card, .card.visible, .card:hover, .card:focus-within {
-        opacity: 0.82;
+      .frame { padding: 0; }
+
+      .poster {
+        min-height: 100vh;
+        border: 0;
+        box-shadow: none;
+      }
+
+      .background,
+      .veil {
+        inset: 0;
+        border: 0;
+      }
+
+      .background img {
+        object-position: center;
+        animation: none;
+        transform: scale(1.01);
+        filter: brightness(0.76) contrast(1.08) saturate(0.78);
+      }
+
+      .page { min-height: 160vh; }
+
+      .hero {
+        padding: 20px;
+        min-height: 100svh;
+      }
+
+      .top {
+        font-size: 10px;
+        letter-spacing: 0.13em;
+      }
+
+      .mark { letter-spacing: 0.28em; }
+
+      .hero-center {
+        justify-self: start;
+        text-align: left;
+        transform: translateY(1vh);
+      }
+
+      h1 {
+        max-width: 13ch;
+        font-size: 22px;
+        letter-spacing: 0.15em;
+        filter: none;
+        opacity: 0.94;
+      }
+
+      .scroll-layer {
+        display: block;
+        padding: 4vh 20px 15vh;
+      }
+
+      .panel,
+      .panel.visible,
+      .panel:hover {
+        opacity: 0.90;
         transform: none;
         filter: none;
-        margin-bottom: 58px;
+        min-height: auto;
+        margin-top: 52px;
         font-size: 12px;
+        line-height: 1.72;
+        letter-spacing: 0.08em;
       }
-      .card a { filter: none; }
+
+      .hover-link,
+      .hover-link:hover,
+      .panel-link,
+      .panel:hover .panel-link,
+      .panel-link:hover {
+        filter: none;
+        opacity: 0.92;
+        transform: none;
+      }
+
+      .panel-label { margin-bottom: 14px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      *, *::before, *::after { animation: none !important; transition: none !important; }
-      .card { opacity: 0.8; transform: none; filter: none; }
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+      .panel {
+        opacity: 0.82;
+        transform: none;
+        filter: none;
+      }
     }
   </style>
 </head>
 
 <body>
-  <div class="site">
-    <nav class="nav">
-      <a href="#live">☰ ott</a>
-    </nav>
-
-    <header class="poster">
+  <div class="frame">
+    <div class="poster">
+      <div class="background" aria-hidden="true">
+        <img src="ott-background.jpg" alt="" />
+      </div>
+      <div class="veil" aria-hidden="true"></div>
       <div class="grain" aria-hidden="true"></div>
-      <div class="poster-line" aria-hidden="true"></div>
-      <h1>das hier ist neuland</h1>
-    </header>
 
-    <main class="info">
-      <section class="card mail reveal" aria-label="mail">
-        <a href="mailto:band@ott.band">band@ott.band</a>
-      </section>
+      <div class="page">
+        <header class="hero">
+          <div class="top">
+            <span class="mark">ott</span>
+            <a class="hover-link" href="#live">live</a>
+          </div>
 
-      <section id="live" class="card live reveal" aria-label="live">
-        <span class="label">live:</span>
-        <a href="https://terrain-gurzelen.org/summerfest-2026/" target="_blank" rel="noreferrer">
-          03.07.26<br />
-          terrain gurzelen<br />
-          19:30
-        </a>
-      </section>
-    </main>
+          <div class="hero-center">
+            <h1>das hier ist neuland</h1>
+          </div>
 
-    <div class="end" aria-hidden="true"></div>
+          <div></div>
+        </header>
+
+        <main class="scroll-layer">
+          <section class="panel mail reveal" aria-label="mail">
+            <span class="panel-label">mail</span>
+            <a class="panel-link" href="mailto:band@ott.band">band@ott.band</a>
+          </section>
+
+          <section id="live" class="panel live reveal" aria-label="live">
+            <span class="panel-label">live</span>
+            <a class="panel-link" href="https://terrain-gurzelen.org/summerfest-2026/" target="_blank" rel="noreferrer">
+              03.07.26<br />
+              terrain gurzelen<br />
+              19:30
+            </a>
+          </section>
+        </main>
+
+        <div class="end-space" aria-hidden="true"></div>
+      </div>
+    </div>
   </div>
 
   <script>
-    const revealItems = document.querySelectorAll('.reveal');
+    const items = document.querySelectorAll('.reveal');
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
       });
-    }, { threshold: 0.18, rootMargin: '0px 0px -10% 0px' });
+    }, {
+      threshold: 0.18,
+      rootMargin: '0px 0px -8% 0px'
+    });
 
-    revealItems.forEach((item) => observer.observe(item));
-
-    const poster = document.querySelector('.poster');
-    const title = document.querySelector('h1');
-
-    window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      const posterHeight = poster.offsetHeight || 1;
-      const progress = Math.min(y / posterHeight, 1);
-      title.style.transform = `translateY(${progress * -34}px) scale(${1 + progress * 0.035})`;
-      title.style.filter = `blur(${Math.max(0, 0.7 - progress * 0.7)}px)`;
-    }, { passive: true });
+    items.forEach((item) => observer.observe(item));
   </script>
 </body>
 </html>
