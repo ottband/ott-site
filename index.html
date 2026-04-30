@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ott</title>
+  <meta name="description" content="ott — das hier ist neuland" />
+
+  <!--
+    OTT — minimal site
+
+    Dateien im gleichen Ordner:
+    - index.html
+    - ott-background.jpg
+
+    Einfach bearbeiten:
+    - Gig ändern: Suche nach <section class="panel live">
+    - Mail ändern: Suche nach band@ott.band
+    - Instagram-Link ändern: Suche nach instagram.com
+    - Hintergrund ersetzen: neue Datei wieder ott-background.jpg nennen
+  -->
+
+  <style>
+    :root {
+      --text: rgba(235, 230, 216, 0.92);
+      --soft: rgba(235, 230, 216, 0.62);
+      --faint: rgba(235, 230, 216, 0.34);
+      --line: rgba(235, 230, 216, 0.20);
+      --black: #050505;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--black);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100%;
+      color: var(--text);
+      background: var(--black);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      text-transform: lowercase;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .background {
+      position: fixed;
+      inset: 0;
+      z-index: -20;
+      overflow: hidden;
+      background: var(--black);
+    }
+
+    .background img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transform: scale(1.04);
+      filter: brightness(0.56) contrast(1.13) saturate(0.72);
+      animation: slow-breath 18s ease-in-out infinite alternate;
+    }
+
+    @keyframes slow-breath {
+      from { transform: scale(1.035); filter: brightness(0.54) contrast(1.12) saturate(0.70); }
+      to   { transform: scale(1.075); filter: brightness(0.62) contrast(1.18) saturate(0.78); }
+    }
+
+    .veil {
+      position: fixed;
+      inset: 0;
+      z-index: -19;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 50% 42%, rgba(0,0,0,0.04), rgba(0,0,0,0.74) 76%),
+        linear-gradient(to bottom, rgba(0,0,0,0.14), rgba(0,0,0,0.72));
+    }
+
+    .grain {
+      position: fixed;
+      inset: -45%;
+      z-index: -18;
+      pointer-events: none;
+      opacity: 0.12;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,0.42) 0 0.65px, transparent 0.9px),
+        radial-gradient(circle, rgba(0,0,0,0.55) 0 0.75px, transparent 1px);
+      background-size: 3px 3px, 6px 6px;
+      mix-blend-mode: overlay;
+      animation: grain 7s steps(7) infinite;
+    }
+
+    @keyframes grain {
+      0% { transform: translate3d(0,0,0); }
+      100% { transform: translate3d(-6%,5%,0); }
+    }
+
+    .page {
+      min-height: 185vh;
+      width: 100%;
+    }
+
+    .hero {
+      width: min(100%, var(--max));
+      min-height: 100svh;
+      margin: 0 auto;
+      padding: clamp(22px, 4vw, 56px);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    .top,
+    .bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 24px;
+      color: var(--soft);
+      font-size: clamp(10px, 1vw, 13px);
+      letter-spacing: 0.18em;
+    }
+
+    .mark {
+      color: var(--text);
+      letter-spacing: 0.42em;
+    }
+
+    .hero-center {
+      align-self: center;
+      justify-self: center;
+      transform: translateY(3vh);
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(20px, 3.2vw, 48px);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: clamp(0.16em, 0.9vw, 0.38em);
+      text-shadow: 0 5px 38px rgba(0,0,0,0.85);
+      animation: title-focus 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes title-focus {
+      0%   { opacity: 0.74; filter: blur(1.2px); transform: translateY(0); }
+      45%  { opacity: 0.96; filter: blur(0); }
+      100% { opacity: 0.84; filter: blur(0.6px); transform: translateY(-2px); }
+    }
+
+    .bottom a,
+    .top a,
+    .panel a {
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 4px;
+      transition: opacity 260ms ease, border-color 260ms ease, filter 260ms ease;
+    }
+
+    .bottom a:hover,
+    .top a:hover,
+    .panel a:hover {
+      border-color: var(--text);
+      opacity: 1;
+      filter: blur(0);
+    }
+
+    .content {
+      width: min(100%, var(--max));
+      margin: 0 auto;
+      padding: 6vh clamp(22px, 4vw, 56px) 20vh;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: clamp(18px, 2.4vw, 34px);
+    }
+
+    .panel {
+      border-top: 1px solid var(--line);
+      padding-top: 16px;
+      min-height: 145px;
+      color: var(--soft);
+      font-size: clamp(12px, 1.12vw, 15px);
+      line-height: 1.72;
+      letter-spacing: 0.12em;
+      opacity: 0;
+      transform: translateY(34px);
+      backdrop-filter: blur(3px);
+      transition:
+        opacity 800ms ease,
+        transform 800ms ease,
+        filter 420ms ease,
+        color 420ms ease,
+        backdrop-filter 420ms ease;
+    }
+
+    .panel.visible {
+      opacity: 0.56;
+      transform: translateY(0);
+    }
+
+    .panel:hover {
+      opacity: 1;
+      color: var(--text);
+      backdrop-filter: blur(0);
+    }
+
+    .panel-label {
+      display: block;
+      margin-bottom: 22px;
+      color: var(--faint);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+    }
+
+    .live {
+      grid-column: 2 / span 4;
+      filter: blur(2.2px);
+    }
+
+    .live:hover {
+      filter: blur(0);
+    }
+
+    .contact {
+      grid-column: 8 / span 4;
+      align-self: end;
+    }
+
+    .end-space {
+      height: 18vh;
+    }
+
+    @media (max-width: 760px) {
+      .background img {
+        object-position: center;
+        animation: none;
+        transform: scale(1.02);
+      }
+
+      .page { min-height: auto; }
+
+      .hero {
+        padding: 20px;
+        min-height: 100svh;
+      }
+
+      .top,
+      .bottom {
+        font-size: 10px;
+        letter-spacing: 0.13em;
+      }
+
+      .mark {
+        letter-spacing: 0.28em;
+      }
+
+      .hero-center {
+        justify-self: start;
+        text-align: left;
+        transform: translateY(1vh);
+      }
+
+      h1 {
+        max-width: 12ch;
+        font-size: 22px;
+        letter-spacing: 0.15em;
+        animation: none;
+        filter: none;
+        opacity: 0.92;
+      }
+
+      .content {
+        display: block;
+        padding: 4vh 20px 13vh;
+      }
+
+      .panel,
+      .panel.visible,
+      .panel:hover,
+      .live,
+      .live:hover {
+        opacity: 0.84;
+        transform: none;
+        filter: none;
+        backdrop-filter: none;
+        min-height: auto;
+        margin-top: 54px;
+        font-size: 12px;
+        line-height: 1.72;
+        letter-spacing: 0.08em;
+      }
+
+      .panel-label {
+        margin-bottom: 14px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+      .panel {
+        opacity: 0.74;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="background" aria-hidden="true">
+    <img src="ott-background.jpg" alt="" />
+  </div>
+  <div class="veil" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <div class="page">
+    <header class="hero">
+      <div class="top">
+        <span class="mark">ott</span>
+        <a href="#live">live</a>
+      </div>
+
+      <div class="hero-center">
+        <h1>das hier ist neuland</h1>
+      </div>
+
+      <div class="bottom">
+        <a href="mailto:band@ott.band">band@ott.band</a>
+        <a href="https://instagram.com/" target="_blank" rel="noreferrer">instagram</a>
+      </div>
+    </header>
+
+    <main class="content">
+      <section id="live" class="panel live reveal" aria-label="live">
+        <span class="panel-label">live</span>
+        <a href="https://terrain-gurzelen.org/summerfest-2026/" target="_blank" rel="noreferrer">
+          03.07.26<br />
+          terrain gurzelen<br />
+          19:30
+        </a>
+      </section>
+
+      <section class="panel contact reveal" aria-label="contact">
+        <span class="panel-label">contact</span>
+        <a href="mailto:band@ott.band">band@ott.band</a>
+      </section>
+    </main>
+
+    <div class="end-space" aria-hidden="true"></div>
+  </div>
+
+  <script>
+    const items = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.22,
+      rootMargin: '0px 0px -12% 0px'
+    });
+
+    items.forEach((item) => observer.observe(item));
+  </script>
+</body>
+</html>
