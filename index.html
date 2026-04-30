@@ -14,12 +14,14 @@
 
   <style>
     :root {
-      --text: rgba(236, 231, 219, 0.92);
-      --soft: rgba(236, 231, 219, 0.66);
-      --faint: rgba(236, 231, 219, 0.40);
-      --line: rgba(92, 88, 78, 0.78);
-      --edge: #11110f;
-      --black: #050505;
+      --text: rgba(238, 233, 218, 0.94);
+      --soft: rgba(238, 233, 218, 0.68);
+      --faint: rgba(238, 233, 218, 0.40);
+      --line: rgba(112, 103, 78, 0.62);
+      --yellow: rgba(229, 197, 102, 0.96);
+      --yellow-soft: rgba(229, 197, 102, 0.56);
+      --edge: #0c0c0a;
+      --black: #030303;
       --max: 1180px;
     }
 
@@ -47,29 +49,35 @@
 
     .frame {
       min-height: 100vh;
+      padding: clamp(8px, 1.8vw, 22px);
       background: var(--edge);
-      padding: clamp(10px, 2.4vw, 28px);
     }
 
     .poster {
       position: relative;
-      min-height: calc(100vh - clamp(20px, 4.8vw, 56px));
+      min-height: calc(100vh - clamp(16px, 3.6vw, 44px));
       overflow: clip;
-      border: 1px solid rgba(75, 72, 64, 0.82);
+      border: 1px solid rgba(54, 49, 36, 0.95);
       background: var(--black);
       box-shadow:
-        0 0 0 1px rgba(0,0,0,0.85),
-        0 22px 70px rgba(0,0,0,0.52);
+        0 0 0 1px rgba(0, 0, 0, 0.92),
+        0 20px 70px rgba(0, 0, 0, 0.58);
       isolation: isolate;
     }
 
-    .background {
+    .background,
+    .veil,
+    .grain {
       position: fixed;
-      inset: clamp(10px, 2.4vw, 28px);
+      inset: clamp(8px, 1.8vw, 22px);
+      pointer-events: none;
+    }
+
+    .background {
       z-index: -5;
       overflow: hidden;
+      border: 1px solid rgba(54, 49, 36, 0.95);
       background: var(--black);
-      border: 1px solid rgba(75, 72, 64, 0.82);
     }
 
     .background img {
@@ -77,35 +85,30 @@
       height: 100%;
       object-fit: cover;
       object-position: center;
-      transform: scale(1.025);
-      filter: brightness(0.72) contrast(1.12) saturate(0.78);
-      animation: slow-breath 20s ease-in-out infinite alternate;
+      transform: translateY(calc(var(--scroll, 0) * -0.035px)) scale(1.018);
+      filter: brightness(0.83) contrast(1.08) saturate(0.82);
+      animation: slow-breath 22s ease-in-out infinite alternate;
     }
 
     @keyframes slow-breath {
-      from { transform: scale(1.02); filter: brightness(0.69) contrast(1.10) saturate(0.76); }
-      to   { transform: scale(1.055); filter: brightness(0.78) contrast(1.16) saturate(0.82); }
+      from { filter: brightness(0.80) contrast(1.06) saturate(0.80); }
+      to   { filter: brightness(0.90) contrast(1.12) saturate(0.86); }
     }
 
     .veil {
-      position: fixed;
-      inset: clamp(10px, 2.4vw, 28px);
       z-index: -4;
-      pointer-events: none;
       background:
-        radial-gradient(circle at 50% 38%, rgba(0,0,0,0.00), rgba(0,0,0,0.38) 78%),
-        linear-gradient(to bottom, rgba(0,0,0,0.05), rgba(0,0,0,0.30));
+        radial-gradient(circle at 49% 38%, rgba(0,0,0,0.00), rgba(0,0,0,0.22) 72%, rgba(0,0,0,0.42) 100%),
+        linear-gradient(to bottom, rgba(0,0,0,0.03), rgba(0,0,0,0.28));
     }
 
     .grain {
-      position: fixed;
       inset: -35%;
       z-index: -3;
-      pointer-events: none;
-      opacity: 0.10;
+      opacity: 0.105;
       background-image:
-        radial-gradient(circle, rgba(255,255,255,0.44) 0 0.55px, transparent 0.85px),
-        radial-gradient(circle, rgba(0,0,0,0.48) 0 0.75px, transparent 1px);
+        radial-gradient(circle, rgba(255,255,255,0.42) 0 0.55px, transparent 0.85px),
+        radial-gradient(circle, rgba(0,0,0,0.52) 0 0.75px, transparent 1px);
       background-size: 3px 3px, 7px 7px;
       mix-blend-mode: overlay;
       animation: grain 7s steps(7) infinite;
@@ -125,11 +128,11 @@
 
     .hero {
       width: min(100%, var(--max));
-      min-height: calc(100vh - clamp(20px, 4.8vw, 56px));
+      min-height: calc(100vh - clamp(16px, 3.6vw, 44px));
       margin: 0 auto;
       padding: clamp(18px, 4vw, 52px);
       display: grid;
-      grid-template-rows: auto 1fr auto;
+      grid-template-rows: auto 1fr;
     }
 
     .top {
@@ -148,31 +151,23 @@
       text-shadow: 0 4px 24px rgba(0,0,0,0.75);
     }
 
-    .hover-link,
-    .panel-link {
+    .top a {
       display: inline-block;
       border-bottom: 1px solid var(--line);
       padding-bottom: 4px;
-      filter: blur(0.8px);
+      filter: blur(0.75px);
       opacity: 0.72;
       transform: translateY(0) scale(1);
-      transform-origin: left center;
-      transition:
-        transform 260ms ease,
-        opacity 260ms ease,
-        border-color 260ms ease,
-        filter 260ms ease,
-        color 260ms ease;
+      transform-origin: right center;
+      transition: transform 260ms ease, opacity 260ms ease, border-color 260ms ease, filter 260ms ease, color 260ms ease;
     }
 
-    .hover-link:hover,
-    .panel:hover .panel-link,
-    .panel-link:hover {
-      transform: translateY(-5px) scale(1.045);
+    .top a:hover {
+      transform: translateY(-5px) scale(1.055);
       opacity: 1;
       filter: blur(0);
-      border-color: rgba(236,231,219,0.82);
-      color: var(--text);
+      border-color: var(--yellow-soft);
+      color: var(--yellow);
     }
 
     .hero-center {
@@ -189,43 +184,38 @@
       font-weight: 400;
       line-height: 1.1;
       letter-spacing: clamp(0.20em, 1vw, 0.42em);
-      text-shadow: 0 6px 42px rgba(0,0,0,0.92);
+      white-space: nowrap;
+      text-shadow: 0 6px 42px rgba(0,0,0,0.94);
       opacity: 0.88;
-      filter: blur(0.4px);
-      transition: none;
+      filter: blur(0.35px);
     }
 
     .scroll-layer {
       width: min(100%, var(--max));
       margin: 0 auto;
-      padding: 3vh clamp(18px, 4vw, 52px) 20vh;
+      padding: 7vh clamp(18px, 4vw, 52px) 26vh;
       display: grid;
       grid-template-columns: repeat(12, 1fr);
-      gap: clamp(18px, 2.4vw, 34px);
+      gap: clamp(20px, 3vw, 42px);
       background: transparent;
     }
 
     .panel {
       border-top: 1px solid var(--line);
-      padding-top: 16px;
-      min-height: 130px;
+      padding-top: 18px;
+      min-height: 170px;
       color: var(--soft);
-      font-size: clamp(11px, 1vw, 14px);
-      line-height: 1.7;
-      letter-spacing: 0.12em;
+      font-size: clamp(15px, 1.55vw, 22px);
+      line-height: 1.72;
+      letter-spacing: 0.13em;
       opacity: 0;
-      filter: blur(1.8px);
-      transform: translateY(42px) scale(0.985);
-      transition:
-        opacity 700ms ease,
-        transform 700ms ease,
-        filter 380ms ease,
-        color 380ms ease;
-      background: transparent;
+      filter: blur(3.2px);
+      transform: translateY(52px) scale(0.975);
+      transition: opacity 760ms ease, transform 760ms ease, filter 420ms ease, color 420ms ease, border-color 420ms ease;
     }
 
     .panel.visible {
-      opacity: 0.72;
+      opacity: 0.74;
       transform: translateY(0) scale(1);
     }
 
@@ -233,15 +223,42 @@
       opacity: 1;
       color: var(--text);
       filter: blur(0);
-      transform: translateY(-8px) scale(1.035);
+      transform: translateY(-12px) scale(1.055);
+      border-color: var(--yellow-soft);
     }
 
     .panel-label {
       display: block;
-      margin-bottom: 22px;
+      margin-bottom: 24px;
       color: var(--faint);
-      font-size: 10px;
-      letter-spacing: 0.22em;
+      font-size: 11px;
+      letter-spacing: 0.24em;
+    }
+
+    .panel-link {
+      display: inline-block;
+      transform-origin: left center;
+      transition: transform 260ms ease, color 260ms ease, text-shadow 260ms ease, filter 260ms ease;
+    }
+
+    .mail-link {
+      border-bottom: 1px solid rgba(229, 197, 102, 0.28);
+      padding-bottom: 5px;
+    }
+
+    .venue-link {
+      color: var(--yellow);
+      border-bottom: 1px solid var(--yellow-soft);
+      padding-bottom: 4px;
+      text-shadow: 0 0 22px rgba(229, 197, 102, 0.10);
+    }
+
+    .panel:hover .panel-link,
+    .panel-link:hover {
+      color: var(--yellow);
+      transform: translateY(-4px) scale(1.08);
+      text-shadow: 0 0 24px rgba(229, 197, 102, 0.30);
+      filter: blur(0);
     }
 
     .mail { grid-column: 2 / span 4; }
@@ -249,57 +266,44 @@
 
     .end-space { height: 18vh; }
 
-    @supports (animation-timeline: view()) {
-      .hero-center {
-        animation: title-scroll both linear;
-        animation-timeline: view();
-        animation-range: exit 0% exit 100%;
-      }
-
-      .scroll-layer {
-        animation: content-drift both linear;
-        animation-timeline: view();
-        animation-range: entry 0% entry 100%;
-      }
-
-      @keyframes title-scroll {
-        from { opacity: 1; transform: translateY(4vh); filter: blur(0); }
-        to   { opacity: 0; transform: translateY(-26vh); filter: blur(2.5px); }
-      }
-
-      @keyframes content-drift {
-        from { transform: translateY(7vh); }
-        to   { transform: translateY(-2vh); }
-      }
-    }
-
     @media (max-width: 760px) {
-      .frame { padding: 0; }
+      :root {
+        --line: rgba(106, 96, 70, 0.62);
+      }
+
+      .frame { padding: 8px; }
 
       .poster {
-        min-height: 100vh;
-        border: 0;
-        box-shadow: none;
+        min-height: calc(100vh - 16px);
+        border-color: rgba(48, 43, 32, 0.95);
       }
 
       .background,
       .veil {
-        inset: 0;
-        border: 0;
+        inset: 8px;
+        border-color: rgba(48, 43, 32, 0.95);
       }
 
       .background img {
-        object-position: center;
+        object-fit: contain;
+        object-position: center 28%;
+        transform: none;
         animation: none;
-        transform: scale(1.01);
-        filter: brightness(0.76) contrast(1.08) saturate(0.78);
+        filter: brightness(0.86) contrast(1.08) saturate(0.82);
       }
 
-      .page { min-height: 160vh; }
+      .veil {
+        background:
+          linear-gradient(to bottom, rgba(0,0,0,0.06), rgba(0,0,0,0.36));
+      }
+
+      .grain { opacity: 0.075; }
+
+      .page { min-height: 168vh; }
 
       .hero {
-        padding: 20px;
-        min-height: 100svh;
+        padding: 18px 16px;
+        min-height: calc(100vh - 16px);
       }
 
       .top {
@@ -309,45 +313,45 @@
 
       .mark { letter-spacing: 0.28em; }
 
+      .top a {
+        filter: none;
+        opacity: 0.88;
+      }
+
       .hero-center {
-        justify-self: start;
-        text-align: left;
+        justify-self: center;
+        text-align: center;
         transform: translateY(1vh);
       }
 
       h1 {
-        max-width: 13ch;
-        font-size: 22px;
-        letter-spacing: 0.15em;
+        font-size: clamp(13px, 3.65vw, 19px);
+        letter-spacing: clamp(0.09em, 1.8vw, 0.18em);
+        white-space: nowrap;
         filter: none;
         opacity: 0.94;
       }
 
       .scroll-layer {
         display: block;
-        padding: 4vh 20px 15vh;
+        padding: 10vh 22px 18vh;
       }
 
       .panel,
       .panel.visible,
       .panel:hover {
-        opacity: 0.90;
+        opacity: 0.94;
         transform: none;
         filter: none;
         min-height: auto;
-        margin-top: 52px;
-        font-size: 12px;
-        line-height: 1.72;
-        letter-spacing: 0.08em;
+        margin-top: 64px;
+        font-size: 14px;
+        line-height: 1.75;
+        letter-spacing: 0.09em;
       }
 
-      .hover-link,
-      .hover-link:hover,
-      .panel-link,
       .panel:hover .panel-link,
       .panel-link:hover {
-        filter: none;
-        opacity: 0.92;
         transform: none;
       }
 
@@ -361,7 +365,7 @@
         transition: none !important;
       }
       .panel {
-        opacity: 0.82;
+        opacity: 0.9;
         transform: none;
         filter: none;
       }
@@ -382,29 +386,24 @@
         <header class="hero">
           <div class="top">
             <span class="mark">ott</span>
-            <a class="hover-link" href="#live">live</a>
+            <a href="#live">live</a>
           </div>
 
           <div class="hero-center">
             <h1>das hier ist neuland</h1>
           </div>
-
-          <div></div>
         </header>
 
         <main class="scroll-layer">
           <section class="panel mail reveal" aria-label="mail">
-            <span class="panel-label">mail</span>
-            <a class="panel-link" href="mailto:band@ott.band">band@ott.band</a>
+            <a class="panel-link mail-link" href="mailto:band@ott.band">band@ott.band</a>
           </section>
 
           <section id="live" class="panel live reveal" aria-label="live">
             <span class="panel-label">live</span>
-            <a class="panel-link" href="https://terrain-gurzelen.org/summerfest-2026/" target="_blank" rel="noreferrer">
-              03.07.26<br />
-              terrain gurzelen<br />
-              19:30
-            </a>
+            <span>03.07.26</span><br />
+            <a class="panel-link venue-link" href="https://terrain-gurzelen.org/summerfest-2026/" target="_blank" rel="noreferrer">terrain gurzelen</a><br />
+            <span>19:30</span>
           </section>
         </main>
 
@@ -414,17 +413,19 @@
   </div>
 
   <script>
-    const items = document.querySelectorAll('.reveal');
+    const root = document.documentElement;
+    const updateScroll = () => root.style.setProperty('--scroll', String(window.scrollY || 0));
+    updateScroll();
+    window.addEventListener('scroll', updateScroll, { passive: true });
 
+    const items = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('visible');
       });
     }, {
       threshold: 0.18,
-      rootMargin: '0px 0px -8% 0px'
+      rootMargin: '0px 0px -10% 0px'
     });
 
     items.forEach((item) => observer.observe(item));
