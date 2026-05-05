@@ -3,31 +3,105 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ott</title>
-  <meta name="description" content="ott — das hier ist neuland" />
 
-  <!--
-    Im gleichen GitHub-Ordner ablegen:
-    - index.html
-    - ott-background.jpg
+  <title>ott — band bern / bienne | soft noise rock</title>
+  <meta name="description" content="ott — soft noise rock from Bern / Bienne. Band aus Bern und Biel/Bienne. Live dates, contact and Instagram." />
+  <meta name="keywords" content="ott, ott band, band ott bern, ott bern, ott bienne, soft noise rock bern, noise rock band bern, band bern, band biel, band bienne" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://ott.band/" />
 
-    Kein Logo-File nötig: Das Logo ist direkt als SVG im HTML eingebaut.
-  -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="ott — soft noise rock from Bern / Bienne" />
+  <meta property="og:description" content="ott — soft noise rock from Bern / Bienne. Live dates, contact and Instagram." />
+  <meta property="og:url" content="https://ott.band/" />
+  <meta property="og:image" content="https://ott.band/ott-background.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MusicGroup",
+    "name": "ott",
+    "url": "https://ott.band/",
+    "description": "ott is a soft noise rock band from Bern / Bienne, Switzerland.",
+    "genre": ["soft noise rock", "noise rock", "alternative rock"],
+    "foundingLocation": [
+      { "@type": "Place", "name": "Bern, Switzerland" },
+      { "@type": "Place", "name": "Bienne, Switzerland" }
+    ],
+    "areaServed": [
+      { "@type": "City", "name": "Bern" },
+      { "@type": "City", "name": "Bienne" }
+    ],
+    "sameAs": [
+      "https://www.instagram.com/ott.band/"
+    ],
+    "event": [
+      {
+        "@type": "MusicEvent",
+        "name": "ott live at Terrain Gurzelen Summerfest 2026",
+        "startDate": "2026-07-03T19:30:00+02:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "url": "https://terrain-gurzelen.org/summerfest-2026/",
+        "location": {
+          "@type": "Place",
+          "name": "Terrain Gurzelen",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Biel/Bienne",
+            "addressCountry": "CH"
+          }
+        },
+        "performer": {
+          "@type": "MusicGroup",
+          "name": "ott"
+        }
+      },
+      {
+        "@type": "MusicEvent",
+        "name": "Interhuman at Kofmehl — support: ott",
+        "startDate": "2026-05-30T20:00:00+02:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "url": "https://kofmehl.net/programm/interhuman/",
+        "location": {
+          "@type": "Place",
+          "name": "Kofmehl",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Solothurn",
+            "addressCountry": "CH"
+          }
+        },
+        "performer": [
+          {
+            "@type": "MusicGroup",
+            "name": "interhuman"
+          },
+          {
+            "@type": "MusicGroup",
+            "name": "ott"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 
   <style>
     :root {
       --text: rgba(236, 232, 219, 0.94);
-      --soft: rgba(236, 232, 219, 0.61);
-      --faint: rgba(236, 232, 219, 0.34);
+      --soft: rgba(236, 232, 219, 0.64);
+      --faint: rgba(236, 232, 219, 0.36);
 
       --yellow: #c6a14a;
       --yellow-soft: rgba(198, 161, 74, 0.46);
       --yellow-haze: rgba(198, 161, 74, 0.10);
 
-      --edge-dark: #0b0c09;
-      --edge-mid: #171713;
-      --edge-soft: #25241f;
-      --edge-warm: #38352b;
+      --edge-dark: #000000;
+      --edge-mid: #000000;
+      --edge-soft: #050505;
 
       --max: 1180px;
       --edge: clamp(8px, 1.8vw, 22px);
@@ -51,116 +125,22 @@
       background: var(--edge-mid);
     }
 
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: 122;
-      pointer-events: none;
-      opacity: 0;
-      background: rgba(255, 239, 194, 0.075);
-      mix-blend-mode: screen;
-      animation: page-flicker 8.4s infinite;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
-
-    @keyframes page-flicker {
-      0%, 4.8%, 5.75%, 22%, 23.3%, 56%, 57.4%, 81%, 82.2%, 100% { opacity: 0; }
-      5.05% { opacity: 0.20; }
-      5.22% { opacity: 0.030; }
-      5.45% { opacity: 0.15; }
-      22.35% { opacity: 0.075; }
-      22.74% { opacity: 0.018; }
-      56.28% { opacity: 0.16; }
-      56.53% { opacity: 0.038; }
-      81.24% { opacity: 0.105; }
-    }
-
-    a { color: inherit; text-decoration: none; }
 
     .noise {
       position: fixed;
       inset: -42%;
       z-index: 112;
       pointer-events: none;
-      opacity: 0.075;
+      opacity: 0.055;
       mix-blend-mode: overlay;
       background-image:
-        radial-gradient(circle, rgba(255,255,255,0.36) 0 0.55px, transparent 0.95px),
-        radial-gradient(circle, rgba(0,0,0,0.70) 0 0.75px, transparent 1.08px);
+        radial-gradient(circle, rgba(255,255,255,0.32) 0 0.55px, transparent 0.95px),
+        radial-gradient(circle, rgba(0,0,0,0.72) 0 0.75px, transparent 1.08px);
       background-size: 3px 3px, 8px 8px;
-      animation: grain 6.2s steps(8) infinite;
-    }
-
-    @keyframes grain {
-      0% { transform: translate3d(0,0,0); }
-      20% { transform: translate3d(-2%,2%,0); }
-      40% { transform: translate3d(3%,-1%,0); }
-      60% { transform: translate3d(-4%,-3%,0); }
-      80% { transform: translate3d(2%,4%,0); }
-      100% { transform: translate3d(-5%,3%,0); }
-    }
-
-    .logo-float {
-      position: fixed;
-      left: 0;
-      top: 0;
-      width: clamp(64px, 6.4vw, 106px);
-      height: clamp(64px, 6.4vw, 106px);
-      z-index: 96;
-      pointer-events: none;
-      opacity: 0.96;
-      transform: translate3d(24px, 24px, 0) scale(1);
-      will-change: transform;
-      filter:
-        drop-shadow(0 0 9px rgba(255,255,255,0.22))
-        drop-shadow(0 0 24px rgba(198,161,74,0.17));
-    }
-
-    .logo-svg {
-      width: 100%;
-      height: 100%;
-      overflow: visible;
-      background: transparent;
-      animation: logo-spin 15s linear infinite, logo-flicker 4.35s steps(1) infinite;
-    }
-
-    .logo-svg circle,
-    .logo-svg path {
-      fill: none;
-      stroke: rgba(255,255,255,0.985);
-      stroke-width: 7.2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      vector-effect: non-scaling-stroke;
-    }
-
-    .logo-svg .ghost-line {
-      stroke: rgba(255,255,255,0.15);
-      stroke-width: 9.4;
-      filter: blur(1.8px);
-    }
-
-    @keyframes logo-spin {
-      0% { transform: rotateY(0deg) rotateZ(-5deg) scale(1); }
-      36% { transform: rotateY(126deg) rotateZ(9deg) scale(1.035); }
-      67% { transform: rotateY(242deg) rotateZ(-13deg) scale(0.985); }
-      100% { transform: rotateY(360deg) rotateZ(-5deg) scale(1); }
-    }
-
-    @keyframes logo-flicker {
-      0%, 100% { opacity: 0.90; filter: brightness(1); }
-      7% { opacity: 1; filter: brightness(2.10); }
-      8% { opacity: 0.40; filter: brightness(0.52); }
-      9% { opacity: 1; filter: brightness(1.70); }
-      31% { opacity: 0.86; filter: brightness(0.95); }
-      32% { opacity: 1; filter: brightness(2.35); }
-      33% { opacity: 0.52; filter: brightness(0.66); }
-      34% { opacity: 0.98; filter: brightness(1.16); }
-      68% { opacity: 1; filter: brightness(1.95); }
-      69% { opacity: 0.62; filter: brightness(0.76); }
-      70% { opacity: 0.94; filter: brightness(1.05); }
-      86% { opacity: 1; filter: brightness(1.72); }
-      87% { opacity: 0.74; filter: brightness(0.86); }
     }
 
     .frame {
@@ -242,19 +222,10 @@
         linear-gradient(to bottom, rgba(0,0,0,0.04), rgba(0,0,0,0.24));
     }
 
-    #logo-trail {
-      position: fixed;
-      inset: 0;
-      z-index: 4;
-      pointer-events: none;
-      opacity: 0.84;
-      mix-blend-mode: screen;
-    }
-
     .page {
       position: relative;
       z-index: 5;
-      min-height: 182vh;
+      min-height: 184vh;
       width: 100%;
     }
 
@@ -265,13 +236,14 @@
       margin: 0 auto;
       padding: clamp(18px, 4vw, 52px);
       display: grid;
-      grid-template-rows: auto 1fr;
+      grid-template-rows: auto 1fr auto;
     }
 
     .top {
       display: flex;
       justify-content: flex-end;
       align-items: flex-start;
+      gap: clamp(16px, 2.6vw, 34px);
       color: var(--soft);
       font-size: clamp(10px, 0.95vw, 13px);
       letter-spacing: 0.18em;
@@ -284,7 +256,13 @@
       filter: blur(0.7px);
       opacity: 0.68;
       transform-origin: right center;
-      transition: transform 260ms ease, opacity 260ms ease, border-color 260ms ease, filter 260ms ease, color 260ms ease, text-shadow 260ms ease;
+      transition:
+        transform 260ms ease,
+        opacity 260ms ease,
+        border-color 260ms ease,
+        filter 260ms ease,
+        color 260ms ease,
+        text-shadow 260ms ease;
     }
 
     .top a:hover {
@@ -305,6 +283,17 @@
       pointer-events: none;
     }
 
+    .band-name {
+      margin: 0 0 18px;
+      color: rgba(236, 232, 219, 0.72);
+      font-size: clamp(14px, 1.7vw, 22px);
+      font-weight: 400;
+      letter-spacing: clamp(0.22em, 1.1vw, 0.58em);
+      opacity: clamp(0, calc(0.78 - (var(--scroll, 0) / 210)), 0.78);
+      filter: blur(calc(0.12px + (var(--scroll, 0) * 0.010px)));
+      transform: translateY(calc(var(--scroll, 0) * -0.25px));
+    }
+
     h1 {
       margin: 0;
       font-size: clamp(19px, 3.05vw, 46px);
@@ -320,6 +309,24 @@
       filter: blur(calc(0.20px + (var(--scroll, 0) * 0.018px)));
       transform: translateY(calc(var(--scroll, 0) * -0.48px)) scaleX(1.035);
       transform-origin: center;
+    }
+
+    .tagline {
+      margin: 22px 0 0;
+      color: rgba(236, 232, 219, 0.58);
+      font-size: clamp(10px, 1vw, 14px);
+      letter-spacing: clamp(0.12em, 0.55vw, 0.24em);
+      opacity: clamp(0, calc(0.78 - (var(--scroll, 0) / 170)), 0.78);
+      filter: blur(calc(0.08px + (var(--scroll, 0) * 0.012px)));
+      transform: translateY(calc(var(--scroll, 0) * -0.34px));
+    }
+
+    .seo-line {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
     }
 
     .scroll-layer {
@@ -338,9 +345,9 @@
       padding-top: 18px;
       min-height: 178px;
       color: var(--soft);
-      font-size: clamp(16px, 1.75vw, 25px);
+      font-size: clamp(15px, 1.55vw, 23px);
       line-height: 1.72;
-      letter-spacing: 0.13em;
+      letter-spacing: 0.12em;
       opacity: calc(0.08 + (var(--panel-focus) * 0.82));
       filter: blur(calc(6.2px - (var(--panel-focus) * 6.2px)));
       transform: translateY(calc(60px - (var(--panel-focus) * 60px))) scale(calc(0.965 + (var(--panel-focus) * 0.035)));
@@ -362,13 +369,13 @@
       opacity: 1;
       color: var(--text);
       filter: blur(0);
-      transform: translateY(-12px) scale(1.055);
+      transform: translateY(-12px) scale(1.045);
       border-color: var(--yellow-soft);
     }
 
     .panel-label {
       display: block;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
       color: var(--faint);
       font-size: 11px;
       letter-spacing: 0.24em;
@@ -377,19 +384,26 @@
     .panel-link {
       display: inline-block;
       transform-origin: left center;
-      transition: transform 260ms ease, color 260ms ease, text-shadow 260ms ease, filter 260ms ease, opacity 260ms ease;
+      transition:
+        transform 260ms ease,
+        color 260ms ease,
+        text-shadow 260ms ease,
+        filter 260ms ease,
+        opacity 260ms ease;
       opacity: 0.9;
     }
 
-    .mail-link {
+    .mail-link,
+    .social-link,
+    .venue-link {
       border-bottom: 1px solid rgba(198,161,74,0.28);
       padding-bottom: 5px;
     }
 
-    .venue-link {
+    .venue-link,
+    .social-link {
       color: var(--yellow);
-      border-bottom: 1px solid var(--yellow-soft);
-      padding-bottom: 4px;
+      border-bottom-color: var(--yellow-soft);
       text-shadow: 0 0 24px rgba(198,161,74,0.12);
     }
 
@@ -397,14 +411,61 @@
     .panel-link:hover {
       opacity: 1;
       color: var(--yellow);
-      transform: translateY(-4px) scale(1.1);
+      transform: translateY(-4px) scale(1.08);
       text-shadow: 0 0 28px rgba(198,161,74,0.34);
       filter: blur(0);
     }
 
-    .mail { grid-column: 2 / span 4; }
-    .live { grid-column: 8 / span 4; align-self: end; }
-    .end-space { height: 18vh; }
+    .mail {
+      grid-column: 2 / span 4;
+    }
+
+    .social {
+      grid-column: 8 / span 4;
+    }
+
+    .live {
+      grid-column: 3 / span 8;
+      margin-top: clamp(40px, 8vh, 96px);
+    }
+
+    .gig {
+      display: grid;
+      grid-template-columns: minmax(82px, 0.5fr) 1.8fr;
+      gap: 14px clamp(18px, 3vw, 38px);
+      padding: 0 0 28px;
+      margin: 0 0 28px;
+      border-bottom: 1px solid rgba(236,232,219,0.10);
+    }
+
+    .gig:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .gig-date {
+      color: var(--faint);
+      font-size: clamp(12px, 1vw, 15px);
+      letter-spacing: 0.18em;
+      white-space: nowrap;
+    }
+
+    .gig-info {
+      min-width: 0;
+    }
+
+    .gig-note {
+      display: block;
+      margin-top: 6px;
+      color: var(--faint);
+      font-size: clamp(11px, 0.95vw, 14px);
+      letter-spacing: 0.14em;
+    }
+
+    .end-space {
+      height: 18vh;
+    }
 
     @media (max-width: 760px) {
       :root {
@@ -414,11 +475,11 @@
 
       html,
       body {
-        background: #10110e;
+        background: #000000;
       }
 
       .frame {
-        background: #151611;
+        background: #000000;
       }
 
       .poster {
@@ -426,7 +487,7 @@
       }
 
       .background {
-        background: #11120e;
+        background: #000000;
       }
 
       .background img {
@@ -442,7 +503,9 @@
           linear-gradient(to bottom, rgba(0,0,0,0.06), rgba(0,0,0,0.32));
       }
 
-      .page { min-height: 172vh; }
+      .page {
+        min-height: 176vh;
+      }
 
       .hero {
         padding: 18px 16px;
@@ -450,11 +513,15 @@
       }
 
       .top {
+        gap: 18px;
         font-size: 10px;
         letter-spacing: 0.13em;
       }
 
-      .top a { filter: blur(0.25px); opacity: 0.78; }
+      .top a {
+        filter: blur(0.25px);
+        opacity: 0.78;
+      }
 
       .hero-center {
         position: absolute;
@@ -464,11 +531,23 @@
         transform: translate(-50%, -50%);
       }
 
+      .band-name {
+        font-size: 13px;
+        letter-spacing: 0.23em;
+        margin-bottom: 14px;
+      }
+
       h1 {
         font-size: clamp(14px, 3.75vw, 19px);
         letter-spacing: clamp(0.095em, 1.25vw, 0.17em);
         color: rgba(238, 234, 219, 0.84);
         transform: translateY(calc(var(--scroll, 0) * -0.44px)) scaleX(1.015);
+      }
+
+      .tagline {
+        margin-top: 16px;
+        font-size: 10px;
+        letter-spacing: 0.10em;
       }
 
       .scroll-layer {
@@ -497,28 +576,46 @@
       }
 
       .panel:hover .panel-link,
-      .panel-link:hover { transform: none; }
-
-      .panel-label { margin-bottom: 14px; }
-
-      .logo-float {
-        width: 68px;
-        height: 68px;
+      .panel-link:hover {
+        transform: none;
       }
 
-      #logo-trail { opacity: 0.60; }
+      .panel-label {
+        margin-bottom: 14px;
+      }
+
+      .gig {
+        display: block;
+        padding-bottom: 24px;
+        margin-bottom: 24px;
+      }
+
+      .gig-date {
+        display: block;
+        margin-bottom: 8px;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
         animation: none !important;
         transition: none !important;
       }
-      #logo-trail { display: none; }
-      .logo-float { transform: translate3d(18px, 18px, 0) !important; }
-      .panel { opacity: 0.86; transform: none; filter: none; }
-      h1 { opacity: 0.86; transform: none; filter: none; }
+
+      .panel,
+      h1,
+      .band-name,
+      .tagline {
+        opacity: 0.86;
+        transform: none;
+        filter: none;
+      }
     }
   </style>
 </head>
@@ -526,51 +623,57 @@
 <body>
   <div class="noise" aria-hidden="true"></div>
 
-  <div class="logo-float" id="logo" aria-hidden="true">
-    <svg class="logo-svg" viewBox="0 0 120 120" role="img" aria-label="ott logo">
-      <circle class="ghost-line" cx="60" cy="72" r="39"></circle>
-      <path class="ghost-line" d="M49 26 C51 42 52 61 55 84"></path>
-      <path class="ghost-line" d="M76 20 C76 40 77 57 79 74"></path>
-      <path class="ghost-line" d="M43 51 C48 51 53 51 59 50"></path>
-      <path class="ghost-line" d="M70 54 C76 55 83 55 88 54"></path>
-
-      <circle cx="60" cy="72" r="39"></circle>
-      <path d="M49 26 C51 42 52 61 55 84"></path>
-      <path d="M76 20 C76 40 77 57 79 74"></path>
-      <path d="M43 51 C48 51 53 51 59 50"></path>
-      <path d="M70 54 C76 55 83 55 88 54"></path>
-    </svg>
-  </div>
-
   <div class="frame">
     <div class="poster">
       <div class="background" aria-hidden="true">
         <img src="ott-background.jpg" alt="" />
       </div>
       <div class="veil" aria-hidden="true"></div>
-      <canvas id="logo-trail" aria-hidden="true"></canvas>
 
       <div class="page">
         <header class="hero">
-          <div class="top">
+          <nav class="top" aria-label="navigation">
             <a href="#live">live</a>
-          </div>
+            <a href="https://www.instagram.com/ott.band/" target="_blank" rel="noreferrer">instagram</a>
+          </nav>
 
           <div class="hero-center">
-            <h1>das hier ist neuland</h1>
+            <p class="band-name">ott</p>
+            <h1>ab hier ist neuland</h1>
+            <p class="tagline">soft noise rock from bern / bienne</p>
+            <p class="seo-line">ott band bern bienne — soft noise rock band from bern and biel/bienne, switzerland.</p>
           </div>
         </header>
 
         <main class="scroll-layer">
           <section class="panel mail reveal" aria-label="mail">
+            <span class="panel-label">mail</span>
             <a class="panel-link mail-link" href="mailto:band@ott.band">band@ott.band</a>
+          </section>
+
+          <section class="panel social reveal" aria-label="instagram">
+            <span class="panel-label">instagram</span>
+            <a class="panel-link social-link" href="https://www.instagram.com/ott.band/" target="_blank" rel="noreferrer">@ott.band</a>
           </section>
 
           <section id="live" class="panel live reveal" aria-label="live">
             <span class="panel-label">live</span>
-            <span>03.07.26</span><br />
-            <a class="panel-link venue-link" href="https://terrain-gurzelen.org/summerfest-2026/" target="_blank" rel="noreferrer">terrain gurzelen</a><br />
-            <span>19:30</span>
+
+            <div class="gig">
+              <span class="gig-date">03.07.26<br />19:30</span>
+              <span class="gig-info">
+                <a class="panel-link venue-link" href="https://terrain-gurzelen.org/summerfest-2026/" target="_blank" rel="noreferrer">terrain gurzelen</a>
+                <span class="gig-note">summerfest 2026</span>
+              </span>
+            </div>
+
+            <div class="gig">
+              <span class="gig-date">30.05.26</span>
+              <span class="gig-info">
+                <a class="panel-link venue-link" href="https://kofmehl.net/programm/interhuman/" target="_blank" rel="noreferrer">interhuman @ kofmehl</a>
+                <span class="gig-note">ott als support</span>
+              </span>
+            </div>
           </section>
         </main>
 
@@ -581,15 +684,10 @@
 
   <script>
     const root = document.documentElement;
-    const logo = document.getElementById('logo');
     const panels = [...document.querySelectorAll('.panel')];
-    const trailCanvas = document.getElementById('logo-trail');
-    const trailCtx = trailCanvas ? trailCanvas.getContext('2d', { alpha: true }) : null;
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const mobileQuery = window.matchMedia('(max-width: 760px)');
 
     const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
-    const lerp = (a, b, n) => a + (b - a) * n;
 
     function updateScrollEffects() {
       const scrollY = window.scrollY || 0;
@@ -619,137 +717,8 @@
       threshold: 0.14,
       rootMargin: '0px 0px -8% 0px'
     });
+
     document.querySelectorAll('.reveal').forEach((item) => observer.observe(item));
-
-    if (trailCanvas && trailCtx) {
-      function resizeTrailCanvas() {
-        const ratio = Math.min(window.devicePixelRatio || 1, 2);
-        trailCanvas.width = Math.floor(window.innerWidth * ratio);
-        trailCanvas.height = Math.floor(window.innerHeight * ratio);
-        trailCanvas.style.width = `${window.innerWidth}px`;
-        trailCanvas.style.height = `${window.innerHeight}px`;
-        trailCtx.setTransform(ratio, 0, 0, ratio, 0, 0);
-      }
-      resizeTrailCanvas();
-      window.addEventListener('resize', resizeTrailCanvas, { passive: true });
-    }
-
-    if (logo && !reducedMotion) {
-      let mouseX = window.innerWidth * 0.54;
-      let mouseY = window.innerHeight * 0.42;
-      let cx = 30;
-      let cy = 30;
-      let t = Math.random() * 100;
-      let lastTime = performance.now();
-      let nextWaypointAt = 0;
-      let waypointX = window.innerWidth * 0.55;
-      let waypointY = window.innerHeight * 0.35;
-      let previousTrailX = null;
-      let previousTrailY = null;
-
-      window.addEventListener('mousemove', (event) => {
-        mouseX = event.clientX;
-        mouseY = event.clientY;
-      }, { passive: true });
-
-      function chooseWaypoint(now) {
-        nextWaypointAt = now + 2200 + Math.random() * 4600;
-        const margin = 76;
-        waypointX = margin + Math.random() * Math.max(1, window.innerWidth - margin * 2);
-        waypointY = margin + Math.random() * Math.max(1, window.innerHeight - margin * 2);
-      }
-
-      function drawTrail(x, y, size, intensity) {
-        if (!trailCtx || !trailCanvas) return;
-
-        trailCtx.globalCompositeOperation = 'destination-out';
-        trailCtx.fillStyle = 'rgba(0,0,0,0.018)';
-        trailCtx.fillRect(0, 0, window.innerWidth, window.innerHeight);
-
-        trailCtx.globalCompositeOperation = 'lighter';
-
-        if (previousTrailX !== null) {
-          for (let i = 0; i < 3; i += 1) {
-            trailCtx.beginPath();
-            trailCtx.moveTo(previousTrailX, previousTrailY);
-            const jitterX = (Math.random() - 0.5) * size * 0.18;
-            const jitterY = (Math.random() - 0.5) * size * 0.18;
-            trailCtx.lineTo(x + jitterX, y + jitterY);
-            trailCtx.strokeStyle = i === 0
-              ? `rgba(255,255,255,${0.032 + intensity * 0.038})`
-              : `rgba(198,161,74,${0.016 + intensity * 0.024})`;
-            trailCtx.lineWidth = Math.max(1, size * (i === 0 ? 0.043 : 0.024));
-            trailCtx.lineCap = 'round';
-            trailCtx.stroke();
-          }
-        }
-
-        const particleCount = mobileQuery.matches ? 4 : 8;
-        for (let i = 0; i < particleCount; i += 1) {
-          const angle = Math.random() * Math.PI * 2;
-          const distance = Math.random() * size * 0.42;
-          const px = x + Math.cos(angle) * distance;
-          const py = y + Math.sin(angle) * distance;
-          const radius = 0.7 + Math.random() * (mobileQuery.matches ? 2.2 : 3.6);
-
-          trailCtx.beginPath();
-          trailCtx.arc(px, py, radius, 0, Math.PI * 2);
-          trailCtx.fillStyle = Math.random() > 0.58
-            ? `rgba(198,161,74,${0.028 + Math.random() * 0.070})`
-            : `rgba(255,255,255,${0.030 + Math.random() * 0.080})`;
-          trailCtx.fill();
-        }
-
-        previousTrailX = x;
-        previousTrailY = y;
-      }
-
-      function moveLogo(now) {
-        const dt = clamp((now - lastTime) / 16.67, 0.2, 2.2);
-        lastTime = now;
-
-        const isMobile = mobileQuery.matches;
-        if (isMobile && now > nextWaypointAt) chooseWaypoint(now);
-        if (!nextWaypointAt) chooseWaypoint(now);
-
-        const speedPulse = 0.72 + Math.sin(t * 0.19) * 0.26 + Math.sin(t * 0.047 + 4.1) * 0.20;
-        t += (0.016 + Math.max(0.002, speedPulse) * 0.014) * dt;
-
-        const logoSize = logo.getBoundingClientRect().width || 80;
-        const baseX = isMobile ? waypointX : mouseX;
-        const baseY = isMobile ? waypointY : mouseY;
-
-        const wanderX =
-          Math.sin(t * 0.71 + 0.4) * (isMobile ? 42 : 74) +
-          Math.sin(t * 1.47 + 1.8) * (isMobile ? 22 : 38) +
-          Math.cos(t * 2.13 + 0.2) * (isMobile ? 10 : 18);
-
-        const wanderY =
-          Math.cos(t * 0.59 + 2.0) * (isMobile ? 54 : 68) +
-          Math.sin(t * 1.06 + 4.6) * (isMobile ? 30 : 52) -
-          Math.sin(t * 0.23) * (isMobile ? 10 : 28);
-
-        const targetX = clamp(baseX + wanderX - logoSize / 2, 8, window.innerWidth - logoSize - 8);
-        const targetY = clamp(baseY + wanderY - logoSize / 2, 8, window.innerHeight - logoSize - 8);
-        const ease = isMobile ? 0.018 + Math.max(0, speedPulse) * 0.010 : 0.025 + Math.max(0, speedPulse) * 0.013;
-
-        cx = lerp(cx, targetX, ease * dt);
-        cy = lerp(cy, targetY, ease * dt);
-
-        const scale = clamp(
-          1.06 + Math.sin(t * 0.53) * 0.13 + Math.sin(t * 1.31 + 1.5) * 0.075,
-          0.94,
-          1.25
-        );
-
-        logo.style.transform = `translate3d(${cx}px, ${cy}px, 0) scale(${scale})`;
-
-        drawTrail(cx + logoSize * 0.5, cy + logoSize * 0.5, logoSize * scale, clamp(speedPulse, 0, 1.4));
-        requestAnimationFrame(moveLogo);
-      }
-
-      requestAnimationFrame(moveLogo);
-    }
   </script>
 </body>
 </html>
