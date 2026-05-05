@@ -1,0 +1,723 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>ott — band bern / bienne | soft noise rock</title>
+  <meta name="description" content="ott — soft noise rock from Bern / Bienne. Band aus Bern und Biel/Bienne. Live am 30.05.2026 als Support von Interhuman im Kofmehl und am 03.07.2026 am Terrain Gurzelen." />
+  <meta name="keywords" content="ott, ott band, band ott bern, ott bern, ott bienne, soft noise rock bern, noise rock band bern, band bern, band biel, band bienne, interhuman support, kofmehl" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://ott.band/" />
+  <link rel="icon" href="data:," />
+  <link rel="shortcut icon" href="data:," />
+
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="ott — soft noise rock from Bern / Bienne" />
+  <meta property="og:description" content="ott — soft noise rock from Bern / Bienne. Live am 30.05.2026 als Support von Interhuman im Kofmehl und am 03.07.2026 am Terrain Gurzelen." />
+  <meta property="og:url" content="https://ott.band/" />
+  <meta property="og:image" content="https://ott.band/ott-background.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MusicGroup",
+    "name": "ott",
+    "url": "https://ott.band/",
+    "description": "ott is a soft noise rock band from Bern / Bienne, Switzerland.",
+    "genre": ["soft noise rock", "noise rock", "alternative rock"],
+    "foundingLocation": [
+      { "@type": "Place", "name": "Bern, Switzerland" },
+      { "@type": "Place", "name": "Bienne, Switzerland" }
+    ],
+    "areaServed": [
+      { "@type": "City", "name": "Bern" },
+      { "@type": "City", "name": "Bienne" }
+    ],
+    "sameAs": [
+      "https://www.instagram.com/ott.band/"
+    ],
+    "event": [
+      {
+        "@type": "MusicEvent",
+        "name": "ott live at Terrain Gurzelen Summerfest 2026",
+        "startDate": "2026-07-03T19:30:00+02:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "url": "https://terrain-gurzelen.org/summerfest-2026/",
+        "location": {
+          "@type": "Place",
+          "name": "Terrain Gurzelen",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Biel/Bienne",
+            "addressCountry": "CH"
+          }
+        },
+        "performer": {
+          "@type": "MusicGroup",
+          "name": "ott"
+        }
+      },
+      {
+        "@type": "MusicEvent",
+        "name": "Interhuman at Kofmehl — support: ott",
+        "startDate": "2026-05-30T20:00:00+02:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "url": "https://kofmehl.net/programm/interhuman/",
+        "location": {
+          "@type": "Place",
+          "name": "Kofmehl",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Solothurn",
+            "addressCountry": "CH"
+          }
+        },
+        "performer": [
+          {
+            "@type": "MusicGroup",
+            "name": "interhuman"
+          },
+          {
+            "@type": "MusicGroup",
+            "name": "ott"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --text: rgba(236, 232, 219, 0.94);
+      --soft: rgba(236, 232, 219, 0.64);
+      --faint: rgba(236, 232, 219, 0.36);
+
+      --yellow: #c6a14a;
+      --yellow-soft: rgba(198, 161, 74, 0.46);
+      --yellow-haze: rgba(198, 161, 74, 0.10);
+
+      --edge-dark: #000000;
+      --edge-mid: #000000;
+      --edge-soft: #000000;
+
+      --max: 1180px;
+      --edge: clamp(8px, 1.8vw, 22px);
+      --image-inset: clamp(16px, 2.35vw, 42px);
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--edge-dark);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: var(--text);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      text-transform: lowercase;
+      background: var(--edge-mid);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .noise {
+      position: fixed;
+      inset: -42%;
+      z-index: 112;
+      pointer-events: none;
+      opacity: 0.055;
+      mix-blend-mode: overlay;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,0.32) 0 0.55px, transparent 0.95px),
+        radial-gradient(circle, rgba(0,0,0,0.72) 0 0.75px, transparent 1.08px);
+      background-size: 3px 3px, 8px 8px;
+    }
+
+    .frame {
+      min-height: 100vh;
+      padding: var(--edge);
+      background: #000000;
+    }
+
+    .poster {
+      position: relative;
+      min-height: calc(100vh - (var(--edge) * 2));
+      overflow: clip;
+      isolation: isolate;
+      border: 1px solid rgba(111, 101, 73, 0.38);
+      background: var(--edge-dark);
+      box-shadow:
+        0 0 0 1px rgba(0,0,0,0.72),
+        inset 0 0 0 1px rgba(255,255,255,0.018),
+        0 30px 92px rgba(0,0,0,0.54);
+    }
+
+    .poster::after {
+      content: "";
+      position: fixed;
+      inset: var(--edge);
+      z-index: 3;
+      pointer-events: none;
+      opacity: 0.38;
+      mix-blend-mode: multiply;
+      background:
+        radial-gradient(circle at 50% 50%, transparent 0 45%, rgba(0,0,0,0.22) 79%, rgba(0,0,0,0.50) 100%);
+    }
+
+    .background,
+    .veil {
+      position: fixed;
+      inset: var(--edge);
+      pointer-events: none;
+    }
+
+    .background {
+      z-index: 0;
+      overflow: hidden;
+      border: 1px solid rgba(118, 108, 77, 0.30);
+      background: #000000;
+    }
+
+    .background img {
+      position: absolute;
+      inset: var(--image-inset);
+      width: calc(100% - (var(--image-inset) * 2));
+      height: calc(100% - (var(--image-inset) * 2));
+      object-fit: contain;
+      object-position: center;
+      transform: translateY(calc(var(--scroll, 0) * -0.030px)) scale(0.985);
+      transform-origin: center;
+      opacity: 0.93;
+      filter: brightness(0.74) contrast(1.12) saturate(0.78) sepia(0.055);
+    }
+
+    .background::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 49%, transparent 0 43%, rgba(7,8,6,0.20) 78%, rgba(7,8,6,0.48) 100%),
+        radial-gradient(circle at 23% 21%, rgba(198,161,74,0.060), transparent 30%);
+      mix-blend-mode: normal;
+    }
+
+    .veil {
+      z-index: 1;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,0.18), transparent 18% 82%, rgba(0,0,0,0.18)),
+        linear-gradient(to bottom, rgba(0,0,0,0.04), rgba(0,0,0,0.24));
+    }
+
+    .page {
+      position: relative;
+      z-index: 5;
+      min-height: 184vh;
+      width: 100%;
+    }
+
+    .hero {
+      position: relative;
+      width: min(100%, var(--max));
+      min-height: calc(100vh - (var(--edge) * 2));
+      margin: 0 auto;
+      padding: clamp(18px, 4vw, 52px);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    .top {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-start;
+      gap: clamp(16px, 2.6vw, 34px);
+      color: var(--soft);
+      font-size: clamp(10px, 0.95vw, 13px);
+      letter-spacing: 0.18em;
+    }
+
+    .top a {
+      display: inline-block;
+      padding-bottom: 4px;
+      border-bottom: 1px solid rgba(198,161,74,0.16);
+      filter: blur(0.7px);
+      opacity: 0.68;
+      transform-origin: right center;
+      transition:
+        transform 260ms ease,
+        opacity 260ms ease,
+        border-color 260ms ease,
+        filter 260ms ease,
+        color 260ms ease,
+        text-shadow 260ms ease;
+    }
+
+    .top a:hover {
+      transform: translateY(-4px) scale(1.06);
+      opacity: 1;
+      filter: blur(0);
+      border-color: var(--yellow-soft);
+      color: var(--yellow);
+      text-shadow: 0 0 24px rgba(198,161,74,0.32);
+    }
+
+    .hero-center {
+      align-self: center;
+      justify-self: center;
+      width: min(94vw, 1080px);
+      text-align: center;
+      transform: translateY(3.2vh);
+      pointer-events: none;
+    }
+
+    .band-name {
+      margin: 0 0 18px;
+      color: rgba(236, 232, 219, 0.72);
+      font-size: clamp(14px, 1.7vw, 22px);
+      font-weight: 400;
+      letter-spacing: clamp(0.22em, 1.1vw, 0.58em);
+      opacity: clamp(0, calc(0.78 - (var(--scroll, 0) / 210)), 0.78);
+      filter: blur(calc(0.12px + (var(--scroll, 0) * 0.010px)));
+      transform: translateY(calc(var(--scroll, 0) * -0.25px));
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(19px, 3.05vw, 46px);
+      font-weight: 400;
+      line-height: 1.06;
+      letter-spacing: clamp(0.16em, 1.05vw, 0.54em);
+      white-space: nowrap;
+      color: rgba(238, 234, 219, 0.86);
+      text-shadow:
+        0 8px 48px rgba(0,0,0,0.92),
+        0 0 34px rgba(198,161,74,0.08);
+      opacity: clamp(0, calc(0.92 - (var(--scroll, 0) / 135)), 0.92);
+      filter: blur(calc(0.20px + (var(--scroll, 0) * 0.018px)));
+      transform: translateY(calc(var(--scroll, 0) * -0.48px)) scaleX(1.035);
+      transform-origin: center;
+    }
+
+    .tagline {
+      margin: 22px 0 0;
+      color: rgba(236, 232, 219, 0.58);
+      font-size: clamp(10px, 1vw, 14px);
+      letter-spacing: clamp(0.12em, 0.55vw, 0.24em);
+      opacity: clamp(0, calc(0.78 - (var(--scroll, 0) / 170)), 0.78);
+      filter: blur(calc(0.08px + (var(--scroll, 0) * 0.012px)));
+      transform: translateY(calc(var(--scroll, 0) * -0.34px));
+    }
+
+    .seo-line {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+    .scroll-layer {
+      width: min(100%, var(--max));
+      margin: 0 auto;
+      padding: 6vh clamp(18px, 4vw, 52px) 27vh;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: clamp(20px, 3vw, 42px);
+      background: transparent;
+    }
+
+    .panel {
+      --panel-focus: 0;
+      border-top: 1px solid rgba(198,161,74,0.16);
+      padding-top: 18px;
+      min-height: 178px;
+      color: var(--soft);
+      font-size: clamp(15px, 1.55vw, 23px);
+      line-height: 1.72;
+      letter-spacing: 0.12em;
+      opacity: calc(0.08 + (var(--panel-focus) * 0.82));
+      filter: blur(calc(6.2px - (var(--panel-focus) * 6.2px)));
+      transform: translateY(calc(60px - (var(--panel-focus) * 60px))) scale(calc(0.965 + (var(--panel-focus) * 0.035)));
+      transition:
+        opacity 520ms ease,
+        filter 520ms ease,
+        transform 520ms ease,
+        color 420ms ease,
+        border-color 420ms ease,
+        text-shadow 420ms ease;
+      will-change: opacity, filter, transform;
+    }
+
+    .panel.visible {
+      border-color: rgba(198,161,74,0.22);
+    }
+
+    .panel:hover {
+      opacity: 1;
+      color: var(--text);
+      filter: blur(0);
+      transform: translateY(-12px) scale(1.045);
+      border-color: var(--yellow-soft);
+    }
+
+    .panel-label {
+      display: block;
+      margin-bottom: 22px;
+      color: var(--faint);
+      font-size: 11px;
+      letter-spacing: 0.24em;
+    }
+
+    .panel-link {
+      display: inline-block;
+      transform-origin: left center;
+      transition:
+        transform 260ms ease,
+        color 260ms ease,
+        text-shadow 260ms ease,
+        filter 260ms ease,
+        opacity 260ms ease;
+      opacity: 0.9;
+    }
+
+    .mail-link,
+    .social-link,
+    .venue-link {
+      border-bottom: 1px solid rgba(198,161,74,0.28);
+      padding-bottom: 5px;
+    }
+
+    .venue-link,
+    .social-link {
+      color: var(--yellow);
+      border-bottom-color: var(--yellow-soft);
+      text-shadow: 0 0 24px rgba(198,161,74,0.12);
+    }
+
+    .panel:hover .panel-link,
+    .panel-link:hover {
+      opacity: 1;
+      color: var(--yellow);
+      transform: translateY(-4px) scale(1.08);
+      text-shadow: 0 0 28px rgba(198,161,74,0.34);
+      filter: blur(0);
+    }
+
+    .mail {
+      grid-column: 2 / span 4;
+    }
+
+    .social {
+      grid-column: 8 / span 4;
+    }
+
+    .live {
+      grid-column: 3 / span 8;
+      margin-top: clamp(40px, 8vh, 96px);
+    }
+
+    .gig {
+      display: grid;
+      grid-template-columns: minmax(82px, 0.5fr) 1.8fr;
+      gap: 14px clamp(18px, 3vw, 38px);
+      padding: 0 0 28px;
+      margin: 0 0 28px;
+      border-bottom: 1px solid rgba(236,232,219,0.10);
+    }
+
+    .gig:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .gig-date {
+      color: var(--faint);
+      font-size: clamp(12px, 1vw, 15px);
+      letter-spacing: 0.18em;
+      white-space: nowrap;
+    }
+
+    .gig-info {
+      min-width: 0;
+    }
+
+    .gig-note {
+      display: block;
+      margin-top: 6px;
+      color: var(--faint);
+      font-size: clamp(11px, 0.95vw, 14px);
+      letter-spacing: 0.14em;
+    }
+
+    .end-space {
+      height: 18vh;
+    }
+
+    @media (max-width: 760px) {
+      :root {
+        --edge: 8px;
+        --image-inset: 10px;
+      }
+
+      html,
+      body {
+        background: #000000;
+      }
+
+      .frame {
+        background: #000000;
+      }
+
+      .poster {
+        min-height: calc(100vh - 16px);
+      }
+
+      .background {
+        background: #000000;
+      }
+
+      .background img {
+        object-fit: contain;
+        object-position: center center;
+        transform: translateY(calc(var(--scroll, 0) * -0.010px)) scale(0.985);
+        filter: brightness(0.75) contrast(1.11) saturate(0.78) sepia(0.055);
+      }
+
+      .veil {
+        background:
+          linear-gradient(90deg, rgba(0,0,0,0.20), transparent 24% 76%, rgba(0,0,0,0.20)),
+          linear-gradient(to bottom, rgba(0,0,0,0.06), rgba(0,0,0,0.32));
+      }
+
+      .page {
+        min-height: 176vh;
+      }
+
+      .hero {
+        padding: 18px 16px;
+        min-height: calc(100svh - 16px);
+      }
+
+      .top {
+        gap: 18px;
+        font-size: 10px;
+        letter-spacing: 0.13em;
+      }
+
+      .top a {
+        filter: blur(0.25px);
+        opacity: 0.78;
+      }
+
+      .hero-center {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 96vw;
+        transform: translate(-50%, -50%);
+      }
+
+      .band-name {
+        font-size: 13px;
+        letter-spacing: 0.23em;
+        margin-bottom: 14px;
+      }
+
+      h1 {
+        font-size: clamp(14px, 3.75vw, 19px);
+        letter-spacing: clamp(0.095em, 1.25vw, 0.17em);
+        color: rgba(238, 234, 219, 0.84);
+        transform: translateY(calc(var(--scroll, 0) * -0.44px)) scaleX(1.015);
+      }
+
+      .tagline {
+        margin-top: 16px;
+        font-size: 10px;
+        letter-spacing: 0.10em;
+      }
+
+      .scroll-layer {
+        display: block;
+        padding: 9vh 22px 19vh;
+      }
+
+      .panel,
+      .panel.visible,
+      .panel:hover {
+        min-height: auto;
+        margin-top: 68px;
+        font-size: 14px;
+        line-height: 1.78;
+        letter-spacing: 0.09em;
+        opacity: calc(0.10 + (var(--panel-focus) * 0.90));
+        filter: blur(calc(7.8px - (var(--panel-focus) * 7.8px)));
+        transform: translateY(calc(46px - (var(--panel-focus) * 46px))) scale(calc(0.972 + (var(--panel-focus) * 0.028)));
+        transition: opacity 460ms ease, filter 460ms ease, transform 460ms ease, color 300ms ease, border-color 300ms ease;
+      }
+
+      .panel:hover {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(-4px) scale(1.02);
+      }
+
+      .panel:hover .panel-link,
+      .panel-link:hover {
+        transform: none;
+      }
+
+      .panel-label {
+        margin-bottom: 14px;
+      }
+
+      .gig {
+        display: block;
+        padding-bottom: 24px;
+        margin-bottom: 24px;
+      }
+
+      .gig-date {
+        display: block;
+        margin-bottom: 8px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .panel,
+      h1,
+      .band-name,
+      .tagline {
+        opacity: 0.86;
+        transform: none;
+        filter: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="noise" aria-hidden="true"></div>
+
+  <div class="frame">
+    <div class="poster">
+      <div class="background" aria-hidden="true">
+        <img src="ott-background.jpg" alt="" />
+      </div>
+      <div class="veil" aria-hidden="true"></div>
+
+      <div class="page">
+        <header class="hero">
+          <nav class="top" aria-label="navigation">
+            <a href="#live">live</a>
+            <a href="https://www.instagram.com/ott.band/" target="_blank" rel="noreferrer">instagram</a>
+          </nav>
+
+          <div class="hero-center">
+            <p class="band-name">ott</p>
+            <h1>ab hier ist neuland</h1>
+            <p class="tagline">soft noise rock from bern / bienne</p>
+            <p class="seo-line">ott band bern bienne — soft noise rock band from bern and biel/bienne, switzerland.</p>
+          </div>
+        </header>
+
+        <main class="scroll-layer">
+          <section class="panel mail reveal" aria-label="mail">
+            <span class="panel-label">mail</span>
+            <a class="panel-link mail-link" href="mailto:band@ott.band">band@ott.band</a>
+          </section>
+
+          <section class="panel social reveal" aria-label="instagram">
+            <span class="panel-label">instagram</span>
+            <a class="panel-link social-link" href="https://www.instagram.com/ott.band/" target="_blank" rel="noreferrer">@ott.band</a>
+          </section>
+
+          <section id="live" class="panel live reveal" aria-label="live">
+            <span class="panel-label">live</span>
+
+            <div class="gig">
+              <span class="gig-date">03.07.26<br />19:30</span>
+              <span class="gig-info">
+                <a class="panel-link venue-link" href="https://terrain-gurzelen.org/summerfest-2026/" target="_blank" rel="noreferrer">terrain gurzelen</a>
+                <span class="gig-note">summerfest 2026</span>
+              </span>
+            </div>
+
+            <div class="gig">
+              <span class="gig-date">30.05.26</span>
+              <span class="gig-info">
+                <a class="panel-link venue-link" href="https://kofmehl.net/programm/interhuman/" target="_blank" rel="noreferrer">interhuman @ kofmehl</a>
+                <span class="gig-note">ott als support von interhuman</span>
+              </span>
+            </div>
+          </section>
+        </main>
+
+        <div class="end-space" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const root = document.documentElement;
+    const panels = [...document.querySelectorAll('.panel')];
+    const mobileQuery = window.matchMedia('(max-width: 760px)');
+
+    const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+
+    function updateScrollEffects() {
+      const scrollY = window.scrollY || 0;
+      const viewportH = window.innerHeight || 1;
+      root.style.setProperty('--scroll', String(scrollY));
+
+      panels.forEach((panel) => {
+        const rect = panel.getBoundingClientRect();
+        const focusPoint = rect.top + rect.height * 0.38;
+        const idealPoint = viewportH * (mobileQuery.matches ? 0.58 : 0.60);
+        const range = viewportH * (mobileQuery.matches ? 0.72 : 0.74);
+        const raw = 1 - Math.abs(focusPoint - idealPoint) / range;
+        const focus = clamp(raw * 1.35, 0, 1);
+        panel.style.setProperty('--panel-focus', focus.toFixed(3));
+      });
+    }
+
+    updateScrollEffects();
+    window.addEventListener('scroll', updateScrollEffects, { passive: true });
+    window.addEventListener('resize', updateScrollEffects, { passive: true });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, {
+      threshold: 0.14,
+      rootMargin: '0px 0px -8% 0px'
+    });
+
+    document.querySelectorAll('.reveal').forEach((item) => observer.observe(item));
+  </script>
+</body>
+</html>
